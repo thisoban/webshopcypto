@@ -11,16 +11,12 @@ namespace WebApplication.Controllers
 {
     public class AuthController : Controller
     {
-
-        public AuthController()
-        { 
-        }
         public IActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel loginForm)
+        public IActionResult Login(LoginViewModel loginForm)
         {
                 return View();
         }
@@ -31,7 +27,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel registerForm)
+        public IActionResult Register(RegisterViewModel registerForm)
         {
             //TODO
             try
@@ -42,12 +38,11 @@ namespace WebApplication.Controllers
             {
 
                 throw;
-            }  
-            return View();
+            } 
         }
 
         [HttpGet]
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
           //  await _signInManager.SignOutAsync();
             return Redirect("/home");

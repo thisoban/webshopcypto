@@ -91,9 +91,22 @@ namespace Logic
 
 
         //remove product
-        //public void RemoveProduct()
-        //{
+        public bool RemoveProduct(int id)
+        {
+            bool deleted;
+            try
+            {
+                Product product = GetProduct(id);
+                _context.Products.Remove(product);
+                deleted = true;
 
-        //}
+            }
+            catch (ArgumentException e)
+            {
+           
+                throw;
+            }
+            return deleted;
+        }
     }
 }

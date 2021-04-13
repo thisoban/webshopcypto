@@ -62,7 +62,7 @@ namespace Logic
                invoiceLine.Product = item;
                invoiceLine.Quantity = item.Quantity;
                invoiceLine.Sellprice = item.SellPrice;
-                invoice.InvoiceLines = (ICollection<InvoiceLine>)invoiceLine;
+               invoice.InvoiceLines = (ICollection<InvoiceLine>)invoiceLine;
             }
             _context.Orders.Add(invoice);
         }
