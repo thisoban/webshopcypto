@@ -12,16 +12,20 @@ namespace Logic
     public class UserManager
     {
         private readonly MyContext _context;
-
+        // GET: ProductController
         public UserManager(MyContext context)
         {
             _context = context;
         }
-       
+
         //getuser
-        public User GetUser(int id)
+        public User GetUserById(int id)
         {
-            return _context.Users.Where(x => x.Id == id).FirstOrDefault();
+            return _context.Users.Where(x => x.Id == id).FirstOrDefault(); 
+        }
+        public User GetUserByName(string name)
+        {
+            return _context.Users.Where(x => x.Username == name).FirstOrDefault();
         }
         //checkuser
         public bool CheckUser(string username, string password)
@@ -48,7 +52,6 @@ namespace Logic
         public bool DeleteUser(int id)
         {
             bool Removed;
-
             try
             {
                var context = _context.Users.Where(x => x.Id == id)
@@ -72,6 +75,12 @@ namespace Logic
             context.Lastname = user.Lastname;
             context.Password = user.Password;
             context.Email = user.Email;
+        }
+
+        public void CreateUser(User user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
     }
 }

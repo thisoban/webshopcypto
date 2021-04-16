@@ -6,106 +6,48 @@ using System.Linq;
 
 namespace Logic
 {
-    public class ProductManager
+    public class ProductManager 
     {
-        private MyContext _context;
+        private readonly MyContext _context;
         private readonly string _ErrorMessage = "Something went wrong";
-        public ProductManager(MyContext context)
+        private readonly ProductDAL _productDal;
+
+
+        public ProductManager()
         {
-            _context = context;
+            _context = new MyContext();
+            _productDal = new ProductDAL();
         }
         // create
-        public string CreateProduct(Product productmodel)
+        public bool CreateProduct(Product productmodel)
         {
-            string created = "product created";
-            //check if created
-            if (productmodel != null)
-            {
-                try
-                {
-                    _context.Products.Add(productmodel);
-                    _context.SaveChanges();
-                    
-                }
-                catch (Exception)
-                {
+            bool created = false;
 
-                    throw new ArgumentException(_ErrorMessage, "couldn't create product");
-                }
-            }
-           
+            if (productmodel !=null &&_productDal.CreateProduct(productmodel)) created = true;
             return created;
         }
         //update
         public bool UpdateProduct(Product productmodel)
         {
             bool updated = false;
-            if (productmodel != null)
+
+            if (productmodel != null) 
             {
-                try
-                {
-                    _context.Products.Update(productmodel);
-                    _context.SaveChanges();
-                    updated = true;
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                updated = _productDal.UpdateProduct(productmodel);
             }
             return updated;
         }
 
         //get product
-        public Product GetProduct(int id)
-        {
-            try
-            {
-                return _context.Products
-                       .Where(x => x.Id == id)
-                       .FirstOrDefault();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
+        public Product GetProduct(int id) => _productDal.GetProduct(id);
 
         //get list product
-        public List<Product> Getproducts()
-        {
-            List<Product> products = new List<Product>();
-            try
-            {
-                products = _context.Products.ToList();
-                
-            }
-            catch (Exception e)
-            {
-               
-                throw;
-            }
-            return products;
-        }
-
+        public List<Product> GetAllproducts() => _productDal.GetAllproducts();
 
         //remove product
         public bool RemoveProduct(int id)
         {
-            bool deleted;
-            try
-            {
-                Product product = GetProduct(id);
-                _context.Products.Remove(product);
-                deleted = true;
-
-            }
-            catch (ArgumentException e)
-            {
-           
-                throw;
-            }
+            bool deleted = _productDal.RemoveProduct(id);
             return deleted;
         }
     }

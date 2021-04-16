@@ -1,16 +1,27 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Web;
 using DataModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.Models;
+using DAL;
+using Logic;
+using RestSharp;
 
 namespace WebApplication.Controllers
 {
     public class AuthController : Controller
     {
+
+        private readonly UserManager _userManager;
+        // GET: ProductController
+        public AuthController(MyContext context)
+        {
+            _userManager = new UserManager(context);
+        }
         public IActionResult Login()
         {
             return View();
@@ -18,11 +29,20 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel loginForm)
         {
-                return View();
+            if (_userManager.CheckUser(loginForm.Username, loginForm.Password))
+            {
+               User user = _userManager.GetUserByName(loginForm.Username);
+                HttpCookie userInfo = new HttpCookie();
+                userInfo.Expires.AddDays(2);
+                userInfo.Value = user.Id.ToString();
+               
+            }
+                return View(loginForm);
         }
         [HttpGet]
         public IActionResult Register()
         {
+
             return View();
         }
 

@@ -12,11 +12,11 @@ namespace Logic
     public class OrderManager
     {
 
-        private MyContext _context;
+        private readonly MyContext _context;
 
-        public OrderManager(MyContext context)
+        public OrderManager()
         {
-            _context = context;
+            _context = new MyContext();
         }
         //get all orders
         public List<Invoice> GetAllOrders()
@@ -36,13 +36,14 @@ namespace Logic
          public Invoice GetOrder(int id)
         {
             Invoice order = new Invoice();
-            order = (Invoice)_context.Orders.Where(x=>x.Id == id);
-            order.InvoiceLines = _context.OrderLines.Where(x => x.Order.Id == id).ToList();
+
+             order = _context.Orders.Where(x=>x.Id == id).FirstOrDefault();
+          //  order.InvoiceLines = _context.OrderLines.Where(x => x.Order.Id == id).ToList();
 
             return order;
         }
         //update order
-        public void UpdateOrder(int invoiceId,DataModel.Enum.Status status)
+        public void UpdateStatusOrder(int invoiceId,DataModel.Enum.Status status)
         {
             Invoice invoice = _context.Orders
                 .Where(x=>x.Id == invoiceId).FirstOrDefault();

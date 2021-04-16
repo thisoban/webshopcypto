@@ -27,20 +27,11 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<DAL.MyContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            //services.AddDbContext<DAL.MyContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddControllersWithViews();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
-            services.AddIdentity<DataModel.User, IdentityRole>()
-                .AddEntityFrameworkStores<DAL.MyContext>()
-                .AddDefaultTokenProviders();
             services.AddAuthorization();
-            services.Configure<IdentityOptions>(options =>
-            {
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 4;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredUniqueChars = 0;
-            });
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
