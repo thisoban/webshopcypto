@@ -4,24 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataModel;
-using DAL;
 using Microsoft.EntityFrameworkCore;
 
-namespace Logic
+namespace DAL
 {
-    public class UserManager
+   public class UserDAL
     {
-        private readonly MyContext _context;
-        // GET: ProductController
-        public UserManager(MyContext context)
-        {
-            _context = context;
-        }
-
         //getuser
+        private readonly MyContext _context;
+        public UserDAL()
+        {
+            _context = new MyContext();
+        }
         public User GetUserById(int id)
         {
-            return _context.Users.Where(x => x.Id == id).FirstOrDefault(); 
+            return _context.Users.Where(x => x.Id == id).FirstOrDefault();
         }
         public User GetUserByName(string name)
         {
@@ -31,8 +28,6 @@ namespace Logic
         public bool CheckUser(string username, string password)
         {
             bool loggedIn = false;
-            if (username != null && password !!= null)
-            {
                 try
                 {
                     User user = _context.Users.Where(x => x.Username == username).FirstOrDefault();
@@ -45,10 +40,7 @@ namespace Logic
                 catch (Exception)
                 {
                     throw;
-                }    
-            }
-           
-
+                }
             return loggedIn;
         }
         //remove user
@@ -57,9 +49,11 @@ namespace Logic
             bool Removed;
             try
             {
-               var context = _context.Users.Where(x => x.Id == id)
-                    .Include("Customer")
-                    .FirstOrDefault();
+                var context = _context.Users.Where(x => x.Id == id)
+                     .Include("Customer")
+                     .Include("Invoice")
+                     .Include("InvoiceLine")
+                     .FirstOrDefault();
                 Removed = true;
             }
             catch (Exception)
@@ -72,7 +66,7 @@ namespace Logic
 
         public void UpdateUser(User user)
         {
-           var context= _context.Users.Where(x => x.Id == user.Id).Include("Customer").FirstOrDefault();
+            var context = _context.Users.Where(x => x.Id == user.Id).Include("Customer").FirstOrDefault();
 
             context.Firstname = user.Firstname;
             context.Lastname = user.Lastname;

@@ -64,7 +64,6 @@ namespace DAL
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -80,7 +79,6 @@ namespace DAL
             }
             catch (Exception)
             {
-
                 throw;
             }
             return products;
