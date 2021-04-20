@@ -8,14 +8,12 @@ namespace Logic
 {
     public class ProductManager 
     {
-        private readonly MyContext _context;
         private readonly string _ErrorMessage = "Something went wrong";
         private readonly ProductDAL _productDal;
 
 
         public ProductManager()
         {
-            _context = new MyContext();
             _productDal = new ProductDAL();
         }
         // create
@@ -29,13 +27,7 @@ namespace Logic
         //update
         public bool UpdateProduct(Product productmodel)
         {
-            bool updated = false;
-
-            if (productmodel != null) 
-            {
-                updated = _productDal.UpdateProduct(productmodel);
-            }
-            return updated;
+            return productmodel != null && _productDal.UpdateProduct(productmodel) ^ false;
         }
 
         //get product

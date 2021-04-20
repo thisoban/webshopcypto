@@ -11,79 +11,70 @@ namespace Logic
 {
     public class UserManager
     {
-        private readonly MyContext _context;
+        private readonly UserDAL _context;
         // GET: ProductController
-        public UserManager(MyContext context)
+        public UserManager()
         {
-            _context = context;
+            _context = new UserDAL();
         }
 
         //getuser
         public User GetUserById(int id)
         {
-            return _context.Users.Where(x => x.Id == id).FirstOrDefault(); 
+            return _context.GetUserById(id); 
         }
         public User GetUserByName(string name)
         {
-            return _context.Users.Where(x => x.Username == name).FirstOrDefault();
+            return _context.GetUserByName(name);
         }
         //checkuser
         public bool CheckUser(string username, string password)
         {
             bool loggedIn = false;
+
             if (username != null && password !!= null)
             {
                 try
                 {
-                    User user = _context.Users.Where(x => x.Username == username).FirstOrDefault();
-
-                    if (user.Password == password)
-                    {
-                        loggedIn = true;
-                    }
+                    User user = _context.GetUserByName(username);
+                    if (user.Username == username && user.Password == password) loggedIn = true;
                 }
                 catch (Exception)
                 {
-                    throw;
-                }    
+
+                    return loggedIn;
+                } 
+               
+             
             }
            
-
             return loggedIn;
         }
         //remove user
         public bool DeleteUser(int id)
         {
-            bool Removed;
-            try
-            {
-               var context = _context.Users.Where(x => x.Id == id)
-                    .Include("Customer")
-                    .FirstOrDefault();
-                Removed = true;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            bool Removed = false;
+            if(_context.DeleteUser(id)) Removed = true;
             return Removed;
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(User user, Customer customer)
         {
-           var context= _context.Users.Where(x => x.Id == user.Id).Include("Customer").FirstOrDefault();
+          if(user != null && customer != null)
+            {
+                _context.UpdateUser(user, customer); 
+            }
 
-            context.Firstname = user.Firstname;
-            context.Lastname = user.Lastname;
-            context.Password = user.Password;
-            context.Email = user.Email;
         }
 
         public void CreateUser(User user)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            if (user != null)
+            {
+                _context.CreateUser(user);
+            }
         }
+
+
     }
 }

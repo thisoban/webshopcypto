@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.Models;
-using DAL;
 using Logic;
 using RestSharp;
 
@@ -18,9 +17,9 @@ namespace WebApplication.Controllers
 
         private readonly UserManager _userManager;
         // GET: ProductController
-        public AuthController(MyContext context)
+        public AuthController( )
         {
-            _userManager = new UserManager(context);
+            _userManager = new UserManager();
         }
         public IActionResult Login()
         {
@@ -32,12 +31,14 @@ namespace WebApplication.Controllers
             if (_userManager.CheckUser(loginForm.Username, loginForm.Password))
             {
                User user = _userManager.GetUserByName(loginForm.Username);
-                HttpCookie userInfo = new HttpCookie();
-                userInfo.Expires.AddDays(2);
-                userInfo.Value = user.Id.ToString();
                
+                string test = "test";
+                Response.Cookies.Append(test, user.Id.ToString());
+
             }
-                return View(loginForm);
+       
+
+            return View(loginForm);
         }
         [HttpGet]
         public IActionResult Register()

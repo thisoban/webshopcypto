@@ -31,17 +31,29 @@ namespace TestLogic
             Assert.IsNotNull(productManager.GetProduct(1));
         }
         [TestMethod]
-        public void GetProductWrong()
+        public void GetProductInvalid()
         {
             Assert.IsNull(productManager.GetProduct(5));
         }
 
         [TestMethod]
-        public void UpdateProduct()
+        public void UpdateProductValid()
         {
             Product product = new Product
             {       Name = "tester",
                 Serialnumber= 11234,
+                SellPrice = 110000,
+                Buyprice = 110000,
+            };
+            Assert.IsTrue(productManager.UpdateProduct(product));
+        }
+        [TestMethod]
+        public void UpdateProductUnValid()
+        {
+            Product product = new Product
+            {
+                Name = "tester",
+                Serialnumber = 11234,
                 SellPrice = 110000,
                 Buyprice = 110000,
             };

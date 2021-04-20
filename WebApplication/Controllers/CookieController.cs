@@ -14,23 +14,18 @@ namespace WebApplication.Controllers
         }
 
         //shoppingcart add items
-        public void ShoppingcartAddItems(int id , int qauntity)
+        public void ShoppingcartAddItems(int id , int quantity)
         {
             string test = Request.Cookies["shoppingcart"];
            
         }
         //shoppingcart deleteitems
+        public void ShoppingCartDeleteIteem(int id , int quantity)
+        {
 
+        }
         //login cookie create
 
-        public void Login(int id)
-        {
-            HttpContext.Response.Cookies.Append("User", id.ToString());
-        }
-        //logout cookie destroy
-        public void Logout()
-        {
-            Response.Cookies.Delete("user");    
-        }
+       
     }
 }

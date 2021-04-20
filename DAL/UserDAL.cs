@@ -18,31 +18,15 @@ namespace DAL
         }
         public User GetUserById(int id)
         {
-            return _context.Users.Where(x => x.Id == id).FirstOrDefault();
+            User user = _context.Users.Where(x => x.Id == id).FirstOrDefault();
+            return user;
+             
         }
         public User GetUserByName(string name)
         {
             return _context.Users.Where(x => x.Username == name).FirstOrDefault();
         }
-        //checkuser
-        public bool CheckUser(string username, string password)
-        {
-            bool loggedIn = false;
-                try
-                {
-                    User user = _context.Users.Where(x => x.Username == username).FirstOrDefault();
-
-                    if (user.Password == password)
-                    {
-                        loggedIn = true;
-                    }
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            return loggedIn;
-        }
+      
         //remove user
         public bool DeleteUser(int id)
         {
@@ -64,7 +48,7 @@ namespace DAL
             return Removed;
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(User user, Customer customer)
         {
             var context = _context.Users.Where(x => x.Id == user.Id).Include("Customer").FirstOrDefault();
 
