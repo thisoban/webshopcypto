@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataModel;
+using Repository.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL
+namespace Repository
 {
-   public class UserDAL
+   public class UserRepository
     {
         //getuser
         private readonly MyContext _context;
-        public UserDAL()
+        public UserRepository()
         {
             _context = new MyContext();
         }

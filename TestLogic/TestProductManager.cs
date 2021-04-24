@@ -10,7 +10,7 @@ namespace TestLogic
     {
         private readonly ProductManager productManager = new ProductManager();
         
-
+        //TODO: maak productmanager createproduct checks of product exist op bepaalde properties van product
         [TestMethod]
         public void CreateProductSuccesful()
         {

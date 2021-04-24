@@ -5,16 +5,14 @@ using DataModel;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Repository.Database;
 
-namespace DAL
+namespace Repository
 {
-    public class ProductDAL 
+    public class ProductRepository : Repository<Product>, IProductRepository
     {
         private readonly MyContext _context;
-        public ProductDAL()
-        {
-            _context = new MyContext();
-        }
+        public ProductRepository() => _context = new MyContext();
         public bool CreateProduct(Product productmodel)
         {
             bool created = false;
@@ -32,7 +30,6 @@ namespace DAL
                     throw;
                 }
             }
-
             return created;
         }
         //update
@@ -48,7 +45,7 @@ namespace DAL
                 }
                 catch (Exception)
                 {
-                    throw;
+                    return updated;
                 }
             return updated;
         }
@@ -75,7 +72,6 @@ namespace DAL
             try
             {
                 products = _context.Products.ToList();
-
             }
             catch (Exception)
             {
@@ -101,5 +97,10 @@ namespace DAL
             return deleted;
         }
 
+        public override Product GetEntity(Product entity)
+        {
+            Product product = _context.Products.Where(x => x.Id == entity.Id).FirstOrDefault();
+            return product;
+        }
     }
 }

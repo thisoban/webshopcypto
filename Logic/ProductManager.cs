@@ -1,20 +1,19 @@
 ﻿using System;
 using DataModel;
-using DAL;
+using Repository;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Logic
 {
-    public class ProductManager 
+    public class ProductManager
     {
         private readonly string _ErrorMessage = "Something went wrong";
-        private readonly ProductDAL _productDal;
-
+        private readonly ProductRepository _productDal;
 
         public ProductManager()
         {
-            _productDal = new ProductDAL();
+            _productDal = new ProductRepository();
         }
         // create
         public bool CreateProduct(Product productmodel)
@@ -25,10 +24,7 @@ namespace Logic
             return created;
         }
         //update
-        public bool UpdateProduct(Product productmodel)
-        {
-            return productmodel != null && _productDal.UpdateProduct(productmodel) ^ false;
-        }
+       public bool UpdateProduct(Product productmodel) => productmodel != null &&  !_productDal.UpdateProduct(productmodel) ;
 
         //get product
         public Product GetProduct(int id) => _productDal.GetProduct(id);

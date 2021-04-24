@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL;
 using DataModel;
 using Microsoft.EntityFrameworkCore;
+using Repository.Database;
 
 namespace Logic
 {
     public class OrderManager
     {
-
         private readonly MyContext _context;
 
         public OrderManager()

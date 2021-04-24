@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataModel;
-using DAL;
+using Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace Logic
 {
     public class UserManager
     {
-        private readonly UserDAL _context;
+        private readonly UserRepository _context;
         // GET: ProductController
         public UserManager()
         {
-            _context = new UserDAL();
+            _context = new UserRepository();
         }
 
         //getuser
@@ -32,7 +32,7 @@ namespace Logic
         {
             bool loggedIn = false;
 
-            if (username != null && password !!= null)
+            if (username != null && password != null)
             {
                 try
                 {
@@ -41,11 +41,8 @@ namespace Logic
                 }
                 catch (Exception)
                 {
-
                     return loggedIn;
                 } 
-               
-             
             }
            
             return loggedIn;
@@ -64,7 +61,6 @@ namespace Logic
             {
                 _context.UpdateUser(user, customer); 
             }
-
         }
 
         public void CreateUser(User user)

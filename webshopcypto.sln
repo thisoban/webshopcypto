@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\DataModel.csproj", "{E9DEEAE8-1BEA-47D0-982D-F84E6B1BB467}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{75C38A99-499F-4A56-8F8B-8D72F037E1A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "DAL\Repository.csproj", "{75C38A99-499F-4A56-8F8B-8D72F037E1A8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestLogic", "TestLogic\TestLogic.csproj", "{01C16383-BF4E-4077-8829-79D95EFDC6CD}"
 EndProject
