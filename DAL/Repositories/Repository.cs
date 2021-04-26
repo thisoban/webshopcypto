@@ -13,7 +13,7 @@ namespace Repository
     {
         private readonly MyContext _context;
         public Repository() => _context = new MyContext();
-        public bool Create(TEntity entity)
+        public virtual bool Create(TEntity entity)
         {
             try
             {
@@ -27,8 +27,9 @@ namespace Repository
             }
         }
 
-        public bool Delete(TEntity entity)
+        public virtual bool Delete(TEntity entity)
         {
+
             throw new NotImplementedException();
         }
 
@@ -42,13 +43,22 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public List<TEntity> GetList(TEntity entity)
+        public virtual List<TEntity> GetList(TEntity entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(TEntity entity)
+        public virtual bool Update(TEntity entity)
         {
+            bool updated = false;
+
+            if (entity != null)
+            {
+                _context.Update(entity);
+                updated = true;
+            }
+
+            return updated;
             throw new NotImplementedException();
         }
     }
