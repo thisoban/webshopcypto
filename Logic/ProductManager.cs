@@ -30,7 +30,7 @@ namespace Logic
         public Product GetProduct(int id) => _productDal.GetProduct(id);
 
         //get list product
-        public List<Product> GetAllproducts() => _productDal.GetAllproducts();
+        public List<Product> ListOfProducts() => _productDal.GetAllproducts();
 
         //remove product
         public bool RemoveProduct(int id)

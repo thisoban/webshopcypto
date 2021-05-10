@@ -29,7 +29,7 @@ namespace Repository
 
         public virtual bool Delete(TEntity entity)
         {
-
+            _context.Set<TEntity>().Remove(entity);
             throw new NotImplementedException();
         }
 
@@ -39,7 +39,6 @@ namespace Repository
             {
                 throw new ArgumentNullException($"{nameof(GetEntity)} entity must not be null");
             }
-            
             throw new NotImplementedException();
         }
 

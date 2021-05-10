@@ -22,5 +22,9 @@ namespace Repository.Repositories
                       .FirstOrDefault();                
             return invoice;
         }
+        public override List<Invoice> GetList(Invoice entity)
+        {
+            return base.GetList(entity);
+        }
     }
 }

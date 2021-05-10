@@ -68,7 +68,7 @@ namespace Repository
         //get list product
         public List<Product> GetAllproducts()
         {
-            List<Product> products = new List<Product>();
+            List<Product> products;
             try
             {
                 products = _context.Products.ToList();
