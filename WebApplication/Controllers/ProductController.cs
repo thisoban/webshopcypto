@@ -7,16 +7,19 @@ using DataModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL.Database;
 
 namespace WebApplication.Controllers
 {
     public class ProductController : Controller
     {
         private readonly ProductManager _productManager;
+
+        private readonly MyContext mycontext = new MyContext();
         // GET: ProductController
         public ProductController()
         {
-          _productManager = new ProductManager();
+          _productManager = new ProductManager(mycontext);
         }
         public ActionResult Index()
         {

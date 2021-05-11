@@ -5,14 +5,19 @@ using DataModel;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Repository.Database;
+using DAL.Database;
 
-namespace Repository
+namespace DAL
+
 {
-    public class ProductRepository : Repository<Product>, IProductRepository
+    public class ProductDal : IProductDAL
     {
         private readonly MyContext _context;
-        public ProductRepository() => _context = new MyContext();
+
+        public ProductDal(MyContext context)
+        {
+            _context = context;
+        } 
         public bool CreateProduct(Product productmodel)
         {
             bool created = false;
@@ -53,6 +58,7 @@ namespace Repository
         //get product
         public Product GetProduct(int id)
         {
+         
             try
             {
                 return _context.Products
@@ -97,10 +103,6 @@ namespace Repository
             return deleted;
         }
 
-        public override Product GetEntity(Product entity)
-        {
-            Product product = _context.Products.Where(x => x.Id == entity.Id).FirstOrDefault();
-            return product;
-        }
+       
     }
 }
