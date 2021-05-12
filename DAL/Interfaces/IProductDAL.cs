@@ -1,11 +1,12 @@
-﻿using System;
+﻿using DataModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DataModel;
 using System.Threading.Tasks;
+using DAL.Interfaces;
 
-namespace DAL.Interfaces
+namespace DAL
 {
     public interface IProductDAL
     {
@@ -21,6 +22,7 @@ namespace DAL.Interfaces
         List<Product> GetAllproducts();
 
         //remove product
-        bool DeleteProduct(int id);
+        bool RemoveProduct(int id);
+        
     }
 }

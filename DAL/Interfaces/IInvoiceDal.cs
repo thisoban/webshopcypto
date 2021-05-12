@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using DAL.Interfaces;
 using DataModel;
 using DataModel.Enum;
+using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IInvoiceDAL 
+    public interface IInvoiceDAL
     {
-        //TODO get all invoiceses
-        List<Invoice> GetAllInvoices();
-        //TODO get all invoices from one user
-        List<Invoice> GetAllInvoicesFromOneUser();
-        //TODO create invoice for user
-        bool CreateInvoice(Invoice invoice);
-        //TODO update invoice status
-        bool UpdateInvoiceStatus(int id, Status status);
+        //get all invoices
+        List<Invoice> GetAllinvoices();
+        //get all invoices from one user
+        List<Invoice> GetAllInvoicesFromOneUser(int userid);
+        //get invoicedetails
+        Invoice GetInvoiceDetails(int id);
+        //updatestatus invoice
+        bool UpdateInvoiceStatus(int id,Status status);
     }
 }
