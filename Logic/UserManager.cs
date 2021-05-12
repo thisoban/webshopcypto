@@ -9,14 +9,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Logic
 {
-    public class UserManager
+    public abstract class UserManager
     {
         private readonly UserRepository _context;
         // GET: ProductController
-        public UserManager()
-        {
-            _context = new UserRepository();
-        }
+        public UserManager() => _context = new UserRepository();
+      
 
         //getuser
         public User GetUserById(int id)
@@ -28,48 +26,48 @@ namespace Logic
             return _context.GetUserByName(name);
         }
         //checkuser
-        public bool CheckUser(string username, string password)
-        {
-            bool loggedIn = false;
+        public abstract bool CheckUser(string username, string password);
+        //{
+        //    //bool loggedIn = false;
 
-            if (username != null && password != null)
-            {
-                try
-                {
-                    User user = _context.GetUserByName(username);
-                    if (user.Username == username && user.Password == password) loggedIn = true;
-                }
-                catch (Exception)
-                {
-                    return loggedIn;
-                } 
-            }
-           
-            return loggedIn;
-        }
+        //    //if (username != null && password != null)
+        //    //{
+        //    //    try
+        //    //    {
+        //    //        User user = _context.GetUserByName(username);
+        //    //        if (user.Username == username && user.Password == password) loggedIn = true;
+        //    //    }
+        //    //    catch (Exception)
+        //    //    {
+        //    //        return loggedIn;
+        //    //    } 
+        //    //}
+
+        //    //return loggedIn;
+        //}
         //remove user
-        public bool DeleteUser(int id)
-        {
-            bool Removed = false;
-            if(_context.DeleteUser(id)) Removed = true;
-            return Removed;
-        }
+        public abstract bool DeleteUser(int id);
+        //{
+        //    bool Removed = false;
+        //    if(_context.DeleteUser(id)) Removed = true;
+        //    return Removed;
+        //}
 
-        public void UpdateUser(User user, Customer customer)
-        {
-          if(user != null && customer != null)
-            {
-                _context.UpdateUser(user, customer); 
-            }
-        }
+        public abstract void UpdateUser(User user);
+        //{
+        //  if(user != null && customer != null)
+        //    {
+        //        _context.UpdateUser(user, customer); 
+        //    }
+        //}
 
-        public void CreateUser(User user)
-        {
-            if (user != null)
-            {
-                _context.CreateUser(user);
-            }
-        }
+        public abstract void CreateUser(User user);
+        //{
+        //    if (user != null)
+        //    {
+        //        _context.CreateUser(user);
+        //    }
+        //}
 
 
     }

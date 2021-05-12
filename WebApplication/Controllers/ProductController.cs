@@ -23,7 +23,7 @@ namespace WebApplication.Controllers
         }
         public ActionResult Index()
         {
-            return View(_productManager.GetAllproducts());
+            return View(_productManager.ListOfProducts());
         }
 
         // GET: ProductController/Details/5
