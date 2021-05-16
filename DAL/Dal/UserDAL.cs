@@ -3,35 +3,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Interfaces;
-using DAL.Database;
 using DataModel;
+using DAL.Database;
+using Microsoft.EntityFrameworkCore;
 
-
-namespace DAL.Dal
+namespace DAL
 {
-    public class UserDAL : IUserDAL
+   public class UserDAL
     {
-        private readonly IUserDAL _UserDAL;
-        public UserDAL(MyContext context)
+        //getuser
+        private readonly MyContext _context;
+        public UserDAL()
         {
-            _UserDAL = new UserDAL(context);
+            _context = new MyContext();
         }
-        public bool CreateUser(User user)
+        public User GetUserById(int id)
         {
-           return _UserDAL.CreateUser(user);
+            User user = _context.Users.Where(x => x.Id == id).FirstOrDefault();
+            return user;
+             
         }
-        public bool UpdateUser(User user)
+        public User GetUserByName(string name)
         {
-           return _UserDAL.UpdateUser(user);
+            return _context.Users.Where(x => x.Username == name).FirstOrDefault();
         }
-        public User GetUserByName(User user)
+      
+        //remove user
+        public bool DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            bool Removed;
+            try
+            {
+                var context = _context.Users.Where(x => x.Id == id)
+                     .Include("Customer")
+                     .Include("Invoice")
+                     .Include("InvoiceLine")
+                     .FirstOrDefault();
+                Removed = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Removed;
         }
-        public User GetUserById(int userid)
+
+        public void UpdateUser(User user, Customer customer)
         {
-           return _UserDAL.GetUserById(userid);
+            var context = _context.Users.Where(x => x.Id == user.Id).Include("Customer").FirstOrDefault();
+
+            context.Firstname = user.Firstname;
+            context.Lastname = user.Lastname;
+            context.Password = user.Password;
+            context.Email = user.Email;
+        }
+
+        public void CreateUser(User user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
     }
 }
