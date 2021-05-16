@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication.Controllers
 {
-    public class ProfileController1 : Controller
+    public class ProfileController : Controller
     {
         // GET: ProfileController1
         public ActionResult Index()

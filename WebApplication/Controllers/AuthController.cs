@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.Models;
 using Logic;
+using DAL.Database;
 using RestSharp;
 
 namespace WebApplication.Controllers
@@ -15,11 +16,11 @@ namespace WebApplication.Controllers
     public class AuthController : Controller
     {
 
-        private readonly UserManager _userManager;
+        private readonly UserLogic _userManager;
         // GET: ProductController
-        public AuthController( )
+        public AuthController(MyContext context )
         {
-            _userManager = new UserManager();
+            _userManager = new UserLogic(context);
         }
         public IActionResult Login()
         {

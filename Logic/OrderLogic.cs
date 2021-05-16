@@ -9,11 +9,11 @@ using Repository.Database;
 
 namespace Logic
 {
-    public class OrderManager
+    public class OrderLogic
     {
         private readonly MyContext _context;
 
-        public OrderManager()
+        public OrderLogic()
         {
             _context = new MyContext();
         }

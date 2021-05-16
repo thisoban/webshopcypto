@@ -12,7 +12,7 @@ namespace TestLogic
     [TestClass]
     public class TestOrderManager
     {
-      private readonly OrderManager orderManager = new OrderManager();
+      private readonly OrderLogic orderManager = new OrderLogic();
 
         [TestMethod]
         public void  GetAllOrders()

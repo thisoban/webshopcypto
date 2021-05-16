@@ -12,5 +12,6 @@ namespace DAL.Interfaces
         bool CreateUser(User user);
         User GetUser(User user);
         bool UpdateUser(User user);
+        User GetUserByName(User user);
     }
 }

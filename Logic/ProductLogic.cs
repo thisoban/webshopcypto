@@ -6,12 +6,12 @@ using System.Linq;
 
 namespace Logic
 {
-    public class ProductManager
+    public class ProductLogic
     {
         private readonly string _ErrorMessage = "Something went wrong";
         private readonly ProductRepository _productDal;
 
-        public ProductManager()
+        public ProductLogic()
         {
             _productDal = new ProductRepository();
         }

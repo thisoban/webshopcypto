@@ -4,26 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataModel;
-using Repository;
+using DAL.Database;
+using DAL.Dal;
+using DAL.Interfaces;
+using Logic.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Logic
 {
-    public abstract class UserManager
+    public abstract class UserLogic : IUserLogic
     {
-        private readonly UserRepository _context;
+        private readonly IUserDAL _context;
         // GET: ProductController
-        public UserManager() => _context = new UserRepository();
+        public UserLogic(MyContext context) => _context = new UserDAL(context);
       
-
         //getuser
         public User GetUserById(int id)
         {
             return _context.GetUserById(id); 
         }
-        public User GetUserByName(string name)
+        public User GetUserByName(User user)
         {
-            return _context.GetUserByName(name);
+            return _context.GetUserByName(user);
         }
         //checkuser
         public abstract bool CheckUser(string username, string password);
@@ -45,6 +47,7 @@ namespace Logic
 
         //    //return loggedIn;
         //}
+
         //remove user
         public abstract bool DeleteUser(int id);
         //{

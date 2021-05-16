@@ -11,10 +11,10 @@ namespace TestLogic
 {[TestClass]
     public class TestUserManager
     {
-        private readonly UserManager _usermanager;
+        private readonly UserLogic _usermanager;
         public TestUserManager()
         {
-            _usermanager = new UserManager();
+            _usermanager = new UserLogic();
         }
 
         [TestMethod]

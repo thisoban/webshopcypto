@@ -12,11 +12,11 @@ namespace WebApplication.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductManager _productManager;
+        private readonly ProductLogic _productManager;
         // GET: ProductController
         public ProductController()
         {
-          _productManager = new ProductManager();
+          _productManager = new ProductLogic();
         }
         public ActionResult Index()
         {

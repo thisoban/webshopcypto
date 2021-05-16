@@ -1,18 +1,19 @@
 ﻿using DataModel;
 using System;
-using Repository.Database;
+using DAL.Database;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Repository;
+using DAL.Dal;
+using DAL.Interfaces;
 
 namespace Logic
 {
-    public class EmployeeManager : UserManager
+    public class EmployeeLogic : UserLogic
     {
-        private readonly UserRepository _context;
-        public EmployeeManager() => _context = new UserRepository();
+        private readonly  IUserDAL _context;
+       // public EmployeeLogic(MyContext context) => _context = new EmployeeDAL(context);
         public override bool CheckUser(string username, string password)
         {
             bool loggedIn = false;
@@ -29,7 +30,6 @@ namespace Logic
                     return loggedIn;
                 }
             }
-
             return loggedIn;
         }
 
