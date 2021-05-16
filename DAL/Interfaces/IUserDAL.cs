@@ -10,7 +10,7 @@ namespace DAL.Interfaces
     public interface IUserDAL
     {
         bool CreateUser(User user);
-        User GetUser(User user);
+        User GetUserById(int userid);
         bool UpdateUser(User user);
         User GetUserByName(User user);
     }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataModel;
 using Microsoft.EntityFrameworkCore;
-using Repository.Database;
+using DAL.Database;
 
 namespace Logic
 {

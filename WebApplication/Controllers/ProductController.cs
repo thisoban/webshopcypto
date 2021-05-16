@@ -12,21 +12,21 @@ namespace WebApplication.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductLogic _productManager;
+        private readonly ProductLogic _ProductLogic;
         // GET: ProductController
         public ProductController()
         {
-          _productManager = new ProductLogic();
+          _ProductLogic = new ProductLogic();
         }
         public ActionResult Index()
         {
-            return View(_productManager.ListOfProducts());
+            return View(_ProductLogic.ListOfProducts());
         }
 
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            return View(_productManager.GetProduct(id));
+            return View(_ProductLogic.GetProduct(id));
         }
 
         // GET: ProductController/Create
@@ -42,7 +42,7 @@ namespace WebApplication.Controllers
         {
             try
             {
-                _productManager.CreateProduct(collection);
+                _ProductLogic.CreateProduct(collection);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -54,7 +54,7 @@ namespace WebApplication.Controllers
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(_productManager.GetProduct(id));
+            return View(_ProductLogic.GetProduct(id));
         }
 
         // POST: ProductController/Edit/5
@@ -64,7 +64,7 @@ namespace WebApplication.Controllers
         {
             try
             {
-                _productManager.UpdateProduct(product);
+                _ProductLogic.UpdateProduct(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -76,7 +76,7 @@ namespace WebApplication.Controllers
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(_productManager.GetProduct(id));
+            return View(_ProductLogic.GetProduct(id));
         }
 
         // POST: ProductController/Delete/5

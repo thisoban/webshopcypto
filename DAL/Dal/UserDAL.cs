@@ -12,29 +12,26 @@ namespace DAL.Dal
 {
     public class UserDAL : IUserDAL
     {
-        private readonly MyContext _context;
+        private readonly IUserDAL _UserDAL;
         public UserDAL(MyContext context)
         {
-            _context = context;
+            _UserDAL = new UserDAL(context);
         }
         public bool CreateUser(User user)
         {
-            throw new NotImplementedException();
+           return _UserDAL.CreateUser(user);
         }
-
-        public User GetUser(User user)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool UpdateUser(User user)
         {
-            throw new NotImplementedException();
+           return _UserDAL.UpdateUser(user);
         }
-
         public User GetUserByName(User user)
         {
             throw new NotImplementedException();
+        }
+        public User GetUserById(int userid)
+        {
+           return _UserDAL.GetUserById(userid);
         }
     }
 }

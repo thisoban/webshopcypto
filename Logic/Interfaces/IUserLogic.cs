@@ -11,10 +11,10 @@ namespace Logic.Interfaces
     {
         public User GetUserById(int id);
         public User GetUserByName(User user);
-        public abstract bool CheckUser(string username, string password);
-        public abstract bool DeleteUser(int id);
-        public abstract void UpdateUser(User user);
-        public abstract void CreateUser(User user);
+        public  bool CheckUserIsValid(string username, string password);
+        public  bool DeleteUser(int id);
+        public  void UpdateUser(User user);
+        public  void CreateUser(User user);
         
         
     }

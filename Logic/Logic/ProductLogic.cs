@@ -1,6 +1,7 @@
 ﻿using System;
 using DataModel;
-using Repository;
+using DAL.Interfaces;
+using DAL.Dal;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,11 +10,11 @@ namespace Logic
     public class ProductLogic
     {
         private readonly string _ErrorMessage = "Something went wrong";
-        private readonly ProductRepository _productDal;
+        private readonly IProductDAL _productDal;
 
         public ProductLogic()
         {
-            _productDal = new ProductRepository();
+            _productDal = new ProductDal();
         }
         // create
         public bool CreateProduct(Product productmodel)
