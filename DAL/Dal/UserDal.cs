@@ -5,17 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using DataModel;
 using DAL.Database;
+using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
-   public class UserDAL
+   public class UserDAL : IUserDAL
     {
         //getuser
         private readonly MyContext _context;
-        public UserDAL()
+        public UserDAL(MyContext context)
         {
-            _context = new MyContext();
+            _context = context;
         }
         public User GetUserById(int id)
         {
@@ -63,6 +64,21 @@ namespace DAL
         {
             _context.Users.Add(user);
             _context.SaveChanges();
+        }
+
+        bool IUserDAL.CreateUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetUserByName(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }
