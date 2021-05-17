@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.Models;
 using Logic;
+using Logic.Interfaces;
 using DAL.Database;
 using RestSharp;
 
@@ -16,11 +17,11 @@ namespace WebApplication.Controllers
     public class AuthController : Controller
     {
 
-        private readonly UserLogic _userManager;
+        private readonly IUserLogic _userLogic;
         // GET: ProductController
         public AuthController(MyContext context )
         {
-            _userManager = new UserLogic(context);
+            _userLogic = new UserLogic(context);
         }
         public IActionResult Login()
         {
@@ -29,9 +30,14 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel loginForm)
         {
-            if (_userManager.CheckUser(loginForm.Username, loginForm.Password))
+            User formuser = new User()
             {
-               User user = _userManager.GetUserByName(loginForm.Username);
+                Username = loginForm.Username,
+                Password = loginForm.Password
+            };
+            if (_userLogic.CheckUserIsValid(loginForm.Username, loginForm.Password))
+            {
+               User user = _userLogic.GetUserByName(formuser);
                
                 string test = "test";
                 Response.Cookies.Append(test, user.Id.ToString());

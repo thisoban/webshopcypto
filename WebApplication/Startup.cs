@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using DAL.Database;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddDbContext<DAL.MyContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            services.AddDbContext<MyContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddControllersWithViews();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
             services.AddAuthorization();

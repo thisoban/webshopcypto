@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using DataModel;
 using DAL.Database;
-using DAL.Dal;
 using DAL.Interfaces;
 using Logic.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using DAL;
 
 namespace Logic
 {
-    public abstract class UserLogic : IUserLogic
+    public  class UserLogic : IUserLogic
     {
         private readonly IUserDAL _context;
         // GET: ProductController
@@ -30,10 +30,19 @@ namespace Logic
        
         public void CreateUser(User user)
         {
-            throw new NotImplementedException();
+            
+            if(_context.CreateUser(user) == false)
+            {
+                //return error message
+            }
         }
         public void UpdateUser(User user)
         {
+            if (_context.UpdateUser(user)) 
+            {
+                //return error message
+            }
+            //return true
             throw new NotImplementedException();
         }
 

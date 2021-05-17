@@ -15,7 +15,5 @@ namespace Logic.Interfaces
         public  bool DeleteUser(int id);
         public  void UpdateUser(User user);
         public  void CreateUser(User user);
-        
-        
     }
 }

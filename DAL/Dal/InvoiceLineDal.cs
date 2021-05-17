@@ -7,12 +7,11 @@ using DAL.Interfaces;
 using DataModel;
 using Microsoft.EntityFrameworkCore;
 using DAL.Database;
-using DAL.Interfaces;
 
 
 namespace DAL.Dal
 {
-    public class InvoiceLineDal : IInvoiceLineDAL
+    public class InvoiceLineDal : IInvoiceLIneDAL
     {
         private readonly MyContext _context;
 

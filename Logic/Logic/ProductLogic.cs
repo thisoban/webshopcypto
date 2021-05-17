@@ -1,9 +1,11 @@
 ﻿using System;
 using DataModel;
 using DAL.Interfaces;
-using DAL.Dal;
+using DAL.Database;
+using Logic.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using DAL;
 
 namespace Logic
 {
@@ -12,10 +14,11 @@ namespace Logic
         private readonly string _ErrorMessage = "Something went wrong";
         private readonly IProductDAL _productDal;
 
-        public ProductLogic()
+        public ProductLogic(MyContext context)
         {
-            _productDal = new ProductDal();
+            _productDal = new ProductDal(context);
         }
+
         // create
         public bool CreateProduct(Product productmodel)
         {
@@ -25,7 +28,7 @@ namespace Logic
             return created;
         }
         //update
-       public bool UpdateProduct(Product productmodel) => productmodel != null &&  !_productDal.UpdateProduct(productmodel) ;
+        public bool UpdateProduct(Product productmodel) => productmodel != null &&  !_productDal.UpdateProduct(productmodel) ;
 
         //get product
         public Product GetProduct(int id) => _productDal.GetProduct(id);
