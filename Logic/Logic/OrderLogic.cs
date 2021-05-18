@@ -36,9 +36,10 @@ namespace Logic
         {
             Invoice order = new Invoice();
 
-             order = _context.Orders.Where(x=>x.Id == id).FirstOrDefault();
-          //  order.InvoiceLines = _context.OrderLines.Where(x => x.Order.Id == id).ToList();
-
+             order = _context.Orders
+                                    .Where(x=>x.Id == id)
+                                    .Include("Invoicelines")
+                                    .FirstOrDefault();
             return order;
         }
         //update order

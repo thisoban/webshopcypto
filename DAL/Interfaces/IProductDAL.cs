@@ -8,7 +8,7 @@ using DAL.Interfaces;
 
 namespace DAL
 {
-    public interface IProductDAL
+    public interface IProductDal
     {
         bool CreateProduct(Product productmodel);
 

@@ -11,7 +11,7 @@ using DAL.Database;
 
 namespace DAL.Dal
 {
-    public class InvoiceLineDal : IInvoiceLIneDAL
+    public class InvoiceLineDal :IInvoiceLineDal
     {
         private readonly MyContext _context;
 
@@ -19,12 +19,48 @@ namespace DAL.Dal
         {
             _context = context;
         }
-        public bool CreateInvoiceLines(List<InvoiceLine> invoiceLines)
+
+        public List<InvoiceLine> GetAllInvoices(int id)
+        {
+           List<InvoiceLine> invoiceLines = new List<InvoiceLine>();
+
+           try
+           {
+               invoiceLines = _context.OrderLines
+                    .Where(x => x.Order.Id == id)
+                    .ToList();
+           }
+           catch (Exception e)
+           {
+               Console.WriteLine(e);
+               throw;
+           }
+
+           return invoiceLines;
+        }
+
+        public InvoiceLine GetInvoiceline(int id)
+        {
+            InvoiceLine invoiceline;
+
+            try
+            {
+              invoiceline = _context.OrderLines.Where(x => x.Id == id).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return invoiceline;
+        }
+
+        public bool InsertInvoiceLines(List<InvoiceLine> invoicelines)
         {
             bool created = false;
             try
             {
-                foreach (InvoiceLine invoice in invoiceLines)
+                foreach (InvoiceLine invoice in invoicelines)
                 {
                     _context.OrderLines.Add(invoice);
                 }
@@ -37,26 +73,39 @@ namespace DAL.Dal
                 Console.WriteLine(e);
                 throw;
             }
-
             return created;
         }
 
-        public List<InvoiceLine> GetAllInvoicelines(int id)
+        public bool RemoveInvoiceLine(InvoiceLine invoiceline)
         {
-           List<InvoiceLine> invoiceLines = new List<InvoiceLine>();
-
-           try
-           {
-               invoiceLines = _context.OrderLines.Where(x => x.Order.Id == id).ToList();
-           }
-           catch (Exception e)
-           {
-               Console.WriteLine(e);
-               throw;
-           }
-
-           return invoiceLines;
+            bool removed = false;
+            try
+            {
+                _context.OrderLines.Remove(invoiceline);
+                _context.SaveChanges();
+                removed = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return removed;
         }
 
+        public bool UpdateInvoiceline(InvoiceLine invoiceline)
+        {
+            bool updated = false;
+            try
+            {
+                _context.OrderLines.Update(invoiceline);
+                _context.SaveChanges();
+                updated = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return updated;
+        }
     }
 }

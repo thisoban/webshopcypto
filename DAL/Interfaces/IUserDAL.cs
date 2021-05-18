@@ -7,7 +7,7 @@ using DataModel;
 
 namespace DAL.Interfaces
 {
-    public interface IUserDAL
+    public interface IUserDal
     {
         bool CreateUser(User user);
         User GetUserById(int userid);

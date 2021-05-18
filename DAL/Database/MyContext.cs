@@ -17,8 +17,6 @@ namespace DAL.Database
         public DbSet<InvoiceLine> OrderLines { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Role> Roles { get; set; }
-       
-
         
         public MyContext() {}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -27,7 +25,5 @@ namespace DAL.Database
         }
 
         protected override void OnModelCreating(ModelBuilder builder) => base.OnModelCreating(builder);
-
-
     }
 }

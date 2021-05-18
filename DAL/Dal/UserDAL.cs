@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
-   public class UserDAL : IUserDAL
+   public class UserDAL : IUserDal
     {
         //getuser
         private readonly MyContext _context;
@@ -66,7 +66,7 @@ namespace DAL
             _context.SaveChanges();
         }
 
-        bool IUserDAL.CreateUser(User user)
+        bool IUserDal.CreateUser(User user)
         {
             throw new NotImplementedException();
         }

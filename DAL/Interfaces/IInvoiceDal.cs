@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IInvoiceDAL
+    public interface IInvoiceDal
     {
         //get all invoices
         List<Invoice> GetAllinvoices();

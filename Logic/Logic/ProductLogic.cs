@@ -12,7 +12,7 @@ namespace Logic
     public class ProductLogic
     {
         private readonly string _ErrorMessage = "Something went wrong";
-        private readonly IProductDAL _productDal;
+        private readonly IProductDal _productDal;
 
         public ProductLogic(MyContext context)
         {

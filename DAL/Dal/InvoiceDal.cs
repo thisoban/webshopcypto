@@ -11,7 +11,7 @@ using DataModel.Enum;
 
 namespace DAL
 {
-    public class InvoiceDal :  IInvoiceDAL
+    public class InvoiceDal :  IInvoiceDal
     {
         private readonly MyContext _context;
 

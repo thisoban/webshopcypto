@@ -14,7 +14,7 @@ namespace Logic
 {
     public  class UserLogic : IUserLogic
     {
-        private readonly IUserDAL _context;
+        private readonly IUserDal _context;
         // GET: ProductController
         public UserLogic(MyContext context) => _context = new UserDAL(context);
       
@@ -30,7 +30,6 @@ namespace Logic
        
         public void CreateUser(User user)
         {
-            
             if(_context.CreateUser(user) == false)
             {
                 //return error message

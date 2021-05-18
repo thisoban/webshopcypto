@@ -10,7 +10,7 @@ using DAL.Database;
 namespace DAL
 
 {
-    public class ProductDal : IProductDAL
+    public class ProductDal : IProductDal
     {
         private readonly MyContext _context;
 

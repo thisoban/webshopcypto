@@ -7,11 +7,11 @@ using DataModel;
 
 namespace DAL.Interfaces
 {
-    public interface ICustomerDAL
+    public interface ICustomerDal
     {
         //getcustomer
         Customer GetCustomer(int id);
-        //instertcustomer
+        //insertcustomer
         bool InsertCustomer(Customer customer);
         //updatecustomer
         bool UpdateCustomer(Customer customer);
