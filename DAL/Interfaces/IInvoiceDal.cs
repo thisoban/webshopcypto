@@ -18,5 +18,6 @@ namespace DAL.Interfaces
         Invoice GetInvoiceDetails(int id);
         //updatestatus invoice
         bool UpdateInvoiceStatus(int id,Status status);
+        bool CreateInvoice(Invoice invoice);
     }
 }
