@@ -12,12 +12,12 @@ namespace DAL.Interfaces
         //TODO Getallinvoices
         List<InvoiceLine> GetAllInvoices(int id);
         //TODO insert invoicelines
-        bool InsertInvoiceLines(List<InvoiceLine> invoicelines);
+        bool CreateInvoiceLines(List<InvoiceLine> invoicelines);
         //TODO get invoiceline from this order id
         InvoiceLine GetInvoiceline(int id);
         //TODO update invoiceline
         bool UpdateInvoiceline(InvoiceLine invoiceline);
         //TODO remove invoicline
-        bool RemoveInvoiceLine(InvoiceLine invoiceline);
+        bool DeleteInvoiceline(InvoiceLine invoiceline);
     }
 }

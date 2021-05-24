@@ -27,6 +27,7 @@ namespace DAL.Dal
            try
            {
                invoiceLines = _context.OrderLines
+                    .Include("product")
                     .Where(x => x.Order.Id == id)
                     .ToList();
            }
@@ -45,7 +46,9 @@ namespace DAL.Dal
 
             try
             {
-              invoiceline = _context.OrderLines.Where(x => x.Id == id).FirstOrDefault();
+              invoiceline = _context.OrderLines
+                    .Include("product")
+                    .Where(x => x.Id == id).FirstOrDefault();
             }
             catch (Exception)
             {
@@ -55,7 +58,7 @@ namespace DAL.Dal
             return invoiceline;
         }
 
-        public bool InsertInvoiceLines(List<InvoiceLine> invoicelines)
+        public bool CreateInvoiceLines(List<InvoiceLine> invoicelines)
         {
             bool created = false;
             try
@@ -76,7 +79,7 @@ namespace DAL.Dal
             return created;
         }
 
-        public bool RemoveInvoiceLine(InvoiceLine invoiceline)
+        public bool DeleteInvoiceline(InvoiceLine invoiceline)
         {
             bool removed = false;
             try

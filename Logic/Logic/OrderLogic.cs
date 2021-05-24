@@ -13,9 +13,9 @@ namespace Logic
     {
         private readonly MyContext _context;
 
-        public OrderLogic()
+        public OrderLogic(MyContext context)
         {
-            _context = new MyContext();
+            _context = context;
         }
         //get all orders
         public List<Invoice> GetAllOrders()

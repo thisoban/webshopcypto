@@ -34,11 +34,6 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public List<Invoice> GetAllInvoicesFromOneUser()
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Invoice> GetAllInvoicesFromOneUser(int userid)
         {
             throw new NotImplementedException();
