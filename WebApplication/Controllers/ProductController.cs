@@ -27,7 +27,14 @@ namespace WebApplication.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            return View(_ProductLogic.GetProduct(id));
+            Product product = _ProductLogic.GetProduct(id);
+
+            if (product != null)
+            {
+                return View(product);
+            }
+
+            return View();
         }
 
         // GET: ProductController/Create
@@ -41,15 +48,12 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Product collection)
         {
-            try
+            if (_ProductLogic.CreateProduct(collection))
             {
-                _ProductLogic.CreateProduct(collection);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View(collection);
-            }
+            return View(collection);
+            
         }
 
         // GET: ProductController/Edit/5
@@ -63,15 +67,12 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Product product)
         {
-            try
+            if (_ProductLogic.UpdateProduct(product))
             {
-                _ProductLogic.UpdateProduct(product);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View(product);
-            }
+
+            return View(product);
         }
 
         // GET: ProductController/Delete/5
