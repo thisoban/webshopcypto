@@ -15,9 +15,9 @@ namespace WebApplication.Controllers
     {
         private readonly ProductLogic _ProductLogic;
         // GET: ProductController
-        public ProductController(MyContext context)
+        public ProductController( )
         {
-          _ProductLogic = new ProductLogic(context);
+          _ProductLogic = new ProductLogic(new ProductDal());
         }
         public ActionResult Index()
         {

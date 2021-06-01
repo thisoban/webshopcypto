@@ -11,6 +11,7 @@ using Logic;
 using Logic.Interfaces;
 using DAL.Database;
 using RestSharp;
+using DAL;
 
 namespace WebApplication.Controllers
 {
@@ -19,9 +20,9 @@ namespace WebApplication.Controllers
 
         private readonly IUserLogic _userLogic;
         // GET: ProductController
-        public AuthController(MyContext context )
+        public AuthController( )
         {
-            _userLogic = new UserLogic(context);
+            _userLogic = new UserLogic(new UserDAL());
         }
         public IActionResult Login()
         {

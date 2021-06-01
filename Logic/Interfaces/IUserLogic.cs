@@ -14,6 +14,6 @@ namespace Logic.Interfaces
         public  bool CheckUserIsValid(string username, string password);
         public  bool DeleteUser(int id);
         public  void UpdateUser(User user);
-        public  void CreateUser(User user);
+        public  bool CreateUser(User user);
     }
 }

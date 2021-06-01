@@ -14,9 +14,9 @@ namespace Logic
         private readonly string _ErrorMessage = "Something went wrong";
         private readonly IProductDal _productDal;
 
-        public ProductLogic(MyContext context)
+        public ProductLogic( IProductDal productdal)
         {
-            _productDal = new ProductDal(context);
+            _productDal = productdal;
         }
 
         // create

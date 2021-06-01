@@ -12,7 +12,7 @@ namespace DataModel
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public decimal TotalAmount { get; set; }
-        public Status Status { get; set; }
+        public OrderStatus Status { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual ICollection<InvoiceLine> InvoiceLines { get; set; }
     }

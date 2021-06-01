@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataModel.Enum
 {
-    public enum Status
+    public enum UserStatus
     {
-        processing,
-        orderded,
-        delivered,
-        cancelled
+        LoggedIn,
+        LoggedOut,
+        Invalid
     }
 }

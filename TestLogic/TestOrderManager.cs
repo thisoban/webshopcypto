@@ -12,7 +12,7 @@ namespace TestLogic
     [TestClass]
     public class TestOrderManager
     {
-      private readonly OrderLogic orderManager = new OrderLogic();
+      private readonly OrderLogic orderManager = new OrderLogic(new DAL.Database.MyContext());
 
         [TestMethod]
         public void  GetAllOrders()

@@ -16,7 +16,7 @@ namespace Logic
     {
         private readonly IUserDal _context;
         // GET: ProductController
-        public UserLogic(MyContext context) => _context = new UserDAL(context);
+        public UserLogic(IUserDal userDal) => _context = userDal;
       
         //getuser
         public User GetUserById(int id)
@@ -28,12 +28,14 @@ namespace Logic
             return _context.GetUserByName(user);
         }
        
-        public void CreateUser(User user)
+        public bool CreateUser(User user)
         {
-            if(_context.CreateUser(user) == false)
+            if (_context.CreateUser(user) == false)
             {
-                //return error message
+                return true;
             }
+            return false;
+           
         }
         public void UpdateUser(User user)
         {

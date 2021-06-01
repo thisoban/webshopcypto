@@ -43,7 +43,7 @@ namespace Logic
             return order;
         }
         //update order
-        public void UpdateStatusOrder(int invoiceId,DataModel.Enum.Status status)
+        public void UpdateStatusOrder(int invoiceId,DataModel.Enum.OrderStatus status)
         {
             Invoice invoice = _context.Orders
                 .Where(x=>x.Id == invoiceId).FirstOrDefault();

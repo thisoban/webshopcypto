@@ -11,10 +11,10 @@ using DAL.Database;
 
 namespace DAL.Dal
 {
-    public class InvoiceLineDal :IInvoiceLineDal
+    public class InvoiceLineDal : IInvoiceLineDal
     {
         private readonly MyContext _context;
-
+        
         public InvoiceLineDal(MyContext context)
         {
             _context = context;

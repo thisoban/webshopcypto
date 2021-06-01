@@ -44,7 +44,7 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public bool UpdateInvoiceStatus(int id, Status status)
+        public bool UpdateInvoiceStatus(int id, OrderStatus status)
         {
             throw new NotImplementedException();
         }
