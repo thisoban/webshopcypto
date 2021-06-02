@@ -20,13 +20,17 @@ namespace DAL
         }
         public User GetUserById(int id)
         {
-            User user = _context.Users.Where(x => x.Id == id).FirstOrDefault();
+            User user = _context.Users
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
             return user;
              
         }
         public User GetUserByName(string name)
         {
-            return _context.Users.Where(x => x.Username == name).FirstOrDefault();
+            return _context.Users
+                .Where(x => x.Username == name)
+                .FirstOrDefault();
         }
       
         //remove user
@@ -44,15 +48,17 @@ namespace DAL
             }
             catch (Exception)
             {
-
-                throw;
+                throw ;
             }
             return Removed;
         }
 
         public void UpdateUser(User user, Customer customer)
         {
-            var context = _context.Users.Where(x => x.Id == user.Id).Include("Customer").FirstOrDefault();
+            var context = _context.Users
+                .Where(x => x.Id == user.Id)
+                .Include("Customer")
+                .FirstOrDefault();
 
             context.Firstname = user.Firstname;
             context.Lastname = user.Lastname;
@@ -60,25 +66,56 @@ namespace DAL
             context.Email = user.Email;
         }
 
-        public void CreateUser(User user)
+        public bool CreateUser(User user)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
-        }
-
-        bool IUserDal.CreateUser(User user)
-        {
-            throw new NotImplementedException();
+            bool created = false;
+            try
+            {
+                _context.Users
+                    .Add(user);
+                _context.SaveChanges();
+                created = true;
+            }
+            catch (Exception e)
+            { 
+                throw;
+            }
+            return created;
         }
 
         public bool UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            bool update = false;
+            try
+            {
+                _context.Users
+                    .Update(user);
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return update;
         }
 
         public User GetUserByName(User user)
         {
-            throw new NotImplementedException();
+            User getUser;
+            try
+            {
+                getUser = _context.Users
+                    .Where(x => x.Username == user.Username)
+                    .FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            return getUser;
         }
     }
 }
