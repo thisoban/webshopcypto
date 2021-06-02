@@ -14,9 +14,9 @@ namespace DAL
     {
         //getuser
         private readonly MyContext _context;
-        public UserDAL(MyContext context)
+        public UserDAL()
         {
-            _context = context;
+            
         }
         public User GetUserById(int id)
         {
