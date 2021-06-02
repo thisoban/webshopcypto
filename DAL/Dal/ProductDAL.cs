@@ -12,8 +12,12 @@ namespace DAL
 {
     public class ProductDal : IProductDal
     {
-        private readonly MyContext _context = new MyContext();
+        private readonly MyContext _context;
 
+        public ProductDal(MyContext context)
+        {
+            _context = context;
+        } 
         public bool CreateProduct(Product productmodel)
         {
             bool created = false;
@@ -54,6 +58,7 @@ namespace DAL
         //get product
         public Product GetProduct(int id)
         {
+         
             try
             {
                 return _context.Products
