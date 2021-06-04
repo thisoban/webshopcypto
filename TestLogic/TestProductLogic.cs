@@ -30,6 +30,7 @@ namespace TestLogic
         [TestMethod]
         public void GetProduct()
         {
+           
             Assert.IsNotNull(Logic.GetProduct(1));
         }
         [TestMethod]

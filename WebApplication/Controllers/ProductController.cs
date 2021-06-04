@@ -21,7 +21,14 @@ namespace WebApplication.Controllers
         }
         public ActionResult Index()
         {
-            return View(_ProductLogic.ListOfProducts());
+            try
+            {
+                _ProductLogic.ListOfProducts();
+            }catch()
+            {
+
+            }
+            rView();
         }
 
         // GET: ProductController/Details/5
