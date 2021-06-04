@@ -28,7 +28,7 @@ namespace DAL
                 }
                 catch (Exception)
                 {
-                    throw;
+                    throw new CustomExceptionWithMoreInformation();
                 }
             }
             return created;
