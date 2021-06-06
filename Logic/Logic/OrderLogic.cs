@@ -28,7 +28,6 @@ namespace Logic
         public List<Invoice> GetAllOrdersFromAccount(int id)
         {
             List<Invoice> orders = _context.Orders.Where(x=>x.Customer.User.Id == id).ToList();
-
             return orders;
         }
          //get one order

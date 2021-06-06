@@ -23,24 +23,31 @@ namespace WebApplication.Controllers
         {
             try
             {
-                _ProductLogic.ListOfProducts();
-            }catch()
+              return View(_ProductLogic.ListOfProducts());
+            }catch
             {
-
+             return View();
             }
-            rView();
         }
 
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            Product product = _ProductLogic.GetProduct(id);
-
-            if (product != null)
+            try
             {
-                return View(product);
-            }
+                Product product = _ProductLogic.GetProduct(id);
 
+                if (product != null)
+                {
+                    return View(product);
+                }
+            }
+            catch
+            {
+
+                RedirectToAction("index");
+            }
+           
             return View();
         }
 
@@ -74,12 +81,17 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Product product)
         {
-            if (_ProductLogic.UpdateProduct(product))
+            try
             {
+                _ProductLogic.UpdateProduct(product);
                 return RedirectToAction(nameof(Index));
-            }
 
-            return View(product);
+            }
+            catch (Exception)
+            {
+                //implement error
+                return View(product);
+            } 
         }
 
         // GET: ProductController/Delete/5
