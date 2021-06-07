@@ -12,8 +12,14 @@ namespace DAL
 {
     public class ProductDal : IProductDal
     {
-        private readonly MyContext _context = new MyContext();
+        private readonly MyContext _context;
 
+        public ProductDal(MyContext context)
+        {
+            _context = context;
+        }
+        public ProductDal() { }
+        
         public bool CreateProduct(Product productmodel)
         {
             bool created = false;
@@ -28,7 +34,7 @@ namespace DAL
                 }
                 catch (Exception)
                 {
-                    throw new CustomExceptionWithMoreInformation();
+                    throw; //new CustomExceptionWithMoreInformation();
                 }
             }
             return created;

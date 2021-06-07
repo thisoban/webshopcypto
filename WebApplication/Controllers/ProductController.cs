@@ -13,19 +13,21 @@ namespace WebApplication.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductLogic _ProductLogic;
+        //private readonly ProductLogic _ProductLogic;
+        private readonly IProductLogic _Iproductlogic;
         // GET: ProductController
-        public ProductController( )
+        public ProductController( IProductLogic productLogic)
         {
-          _ProductLogic = new ProductLogic(new ProductDal());
+            _ProductLogic = productLogic;
         }
         public ActionResult Index()
         {
             try
             {
               return View(_ProductLogic.ListOfProducts());
-            }catch
+            }catch(Exception e)
             {
+                string errro = e.Message ;
              return View();
             }
         }
@@ -44,7 +46,7 @@ namespace WebApplication.Controllers
             }
             catch
             {
-
+                //give error and show details vieww
                 RedirectToAction("index");
             }
            
@@ -62,11 +64,18 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Product collection)
         {
-            if (_ProductLogic.CreateProduct(collection))
+            try
             {
+                _ProductLogic.CreateProduct(collection);
                 return RedirectToAction(nameof(Index));
             }
-            return View(collection);
+            catch (Exception)
+            {
+
+                return View(collection);
+            }
+          
+            
             
         }
 

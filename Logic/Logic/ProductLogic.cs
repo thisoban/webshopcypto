@@ -14,18 +14,18 @@ namespace Logic
         private readonly string _ErrorMessage = "Something went wrong";
         private readonly IProductDal _productDal;
 
-        public ProductLogic( IProductDal productdal)
+        public ProductLogic(IProductDal productdal)
         {
             _productDal = productdal;
         }
 
         // create
-        public bool CreateProduct(Product productmodel)
-        {
-            bool created = false;
-
-            if (productmodel !=null &&_productDal.CreateProduct(productmodel)) created = true;
-            return created;
+        public void CreateProduct(Product productmodel)
+        {   
+            if (productmodel !=null)
+            {
+                _productDal.CreateProduct(productmodel);
+            }
         }
         //update
         public bool UpdateProduct(Product productmodel) => productmodel != null &&  !_productDal.UpdateProduct(productmodel) ;

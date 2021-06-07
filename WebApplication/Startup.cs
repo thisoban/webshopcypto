@@ -28,9 +28,11 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
 
-          //  services.AddDbContext<MyContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            services.AddDbContext<MyContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddControllersWithViews();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
+            services.AddScoped<IProductLogic, ProductLogic>();
+            services.AddScoped<IProductDal, ProductDAL>();
             services.AddAuthorization();
         }
 
