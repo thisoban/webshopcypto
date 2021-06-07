@@ -9,7 +9,7 @@ using DAL;
 
 namespace Logic
 {
-    public class ProductLogic
+    public class ProductLogic : IProductLogic
     {
         private readonly string _ErrorMessage = "Something went wrong";
         private readonly IProductDal _productDal;

@@ -1,6 +1,7 @@
 ﻿using DataModel;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Database
 {
-    public class MyContext : DbContext, IDisposable
+    public class MyContext : DbContext, IMyContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Customer> Customers { get; set; }

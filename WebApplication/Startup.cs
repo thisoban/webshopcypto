@@ -9,9 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using DAL.Database;
+using Logic.Interfaces;
+using Logic;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL;
 
 namespace WebApplication
 {
@@ -32,7 +35,8 @@ namespace WebApplication
             services.AddControllersWithViews();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
             services.AddScoped<IProductLogic, ProductLogic>();
-            services.AddScoped<IProductDal, ProductDAL>();
+            services.AddScoped<IProductDal, ProductDal>();
+            services.AddScoped<IMyContext, MyContext>();
             services.AddAuthorization();
         }
 

@@ -9,7 +9,7 @@ namespace Logic.Interfaces
 {
     public interface IProductLogic
     {
-        public bool CreateProduct(Product productmodel);
+        public void CreateProduct(Product productmodel);
        
         //update
         public bool UpdateProduct(Product productmodel);
