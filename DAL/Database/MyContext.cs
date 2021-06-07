@@ -20,11 +20,16 @@ namespace DAL.Database
         public DbSet<Role> Roles { get; set; }
 
         public MyContext(DbContextOptions<MyContext> Options) : base(Options) { }
+
+        void IMyContext.SaveChanges()
+        {
+           
+        }
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlServer(@"Server=mssql.fhict.local;Database=dbi419727_webshop;User Id=dbi419727_webshop;Password=test;");
         //}
 
-       // protected override void OnModelCreating(ModelBuilder builder) => base.OnModelCreating(builder);
+        // protected override void OnModelCreating(ModelBuilder builder) => base.OnModelCreating(builder);
     }
 }

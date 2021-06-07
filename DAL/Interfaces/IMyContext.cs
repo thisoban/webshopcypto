@@ -16,5 +16,7 @@ namespace DAL.Interfaces
          DbSet<InvoiceLine> OrderLines { get; set; }
          DbSet<Product> Products { get; set; }
          DbSet<Role> Roles { get; set; }
+
+        void SaveChanges();
     }
 }
