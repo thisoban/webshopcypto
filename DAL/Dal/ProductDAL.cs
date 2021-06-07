@@ -6,19 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DAL.Database;
+using DAL.Interfaces
 
 namespace DAL
 
 {
     public class ProductDal : IProductDal
     {
-        private readonly MyContext _context;
+        private readonly IMyContext _context;
 
-        public ProductDal(MyContext context)
+        public ProductDal(IMyContext context)
         {
             _context = context;
         }
-        public ProductDal() { }
         
         public bool CreateProduct(Product productmodel)
         {
