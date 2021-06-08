@@ -20,90 +20,37 @@ namespace DAL
             _context = context;
         }
         
-        public bool CreateProduct(Product productmodel)
+        public void CreateProduct(Product productmodel)
         {
-            bool created = false;
-            //check if created
-            if (productmodel != null)
-            {
-                try
-                {
-                    _context.Products.Add(productmodel);
-                    _context.SaveChanges();
-                    created = true;
-                }
-                catch (Exception)
-                {
-                    throw; //new CustomExceptionWithMoreInformation();
-                }
-            }
-            return created;
+            _context.Products.Add(productmodel);
+            _context.SaveChanges();
         }
         //update
-        public bool UpdateProduct(Product productmodel)
+        public void UpdateProduct(Product productmodel)
         {
-            bool updated = false;
-           
-                try
-                {
-                    _context.Products.Update(productmodel);
-                    _context.SaveChanges();
-                    updated = true;
-                }
-                catch (Exception)
-                {
-                    return updated;
-                }
-            return updated;
+            _context.Products.Update(productmodel);
+            _context.SaveChanges();
         }
 
         //get product
         public Product GetProduct(int id)
         {
-            try
-            {
-                return _context.Products
-                       .Where(x => x.Id == id)
-                       .FirstOrDefault();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return   _context.Products
+                    .Where(x => x.Id == id)
+                    .FirstOrDefault();
         }
 
         //get list product
         public List<Product> GetAllproducts()
         {
-            List<Product> products = new List<Product>();
-            try
-            {
-                products = _context.Products.ToList();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return products;
+            return _context.Products.ToList();
         }
 
         //remove product
-        public bool RemoveProduct(int id)
+        public void RemoveProduct(int id)
         {
-            bool deleted;
-            try
-            {
-                Product product = GetProduct(id);
-                _context.Products.Remove(product);
-                deleted = true;
-            }
-            catch (ArgumentException e)
-            {
-                throw;
-            }
-            return deleted;
+            Product product = GetProduct(id);
+            _context.Products.Remove(product);
         }
-
-       
     }
 }

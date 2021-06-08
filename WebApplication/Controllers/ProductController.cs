@@ -28,7 +28,7 @@ namespace WebApplication.Controllers
               return View(_Iproductlogic.ListOfProducts());
             }catch(Exception e)
             {
-                string errro = e.Message ;
+                string error = e.Message ;
              return View();
             }
         }

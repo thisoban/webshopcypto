@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using DataModel;
 using Microsoft.EntityFrameworkCore;
 using DAL.Database;
+using DAL.Interfaces;
 
 namespace Logic
 {
     public class OrderLogic
     {
-        private readonly MyContext _context;
+        private readonly IMyContext _context;
 
-        public OrderLogic(MyContext context)
+        public OrderLogic(IMyContext context)
         {
             _context = context;
         }
@@ -27,6 +28,9 @@ namespace Logic
         //get all orders from one account
         public List<Invoice> GetAllOrdersFromAccount(int id)
         {
+            //check if user exist
+
+            //check 
             List<Invoice> orders = _context.Orders.Where(x=>x.Customer.User.Id == id).ToList();
             return orders;
         }

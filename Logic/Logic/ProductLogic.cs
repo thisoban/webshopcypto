@@ -28,7 +28,13 @@ namespace Logic
             }
         }
         //update
-        public bool UpdateProduct(Product productmodel) => productmodel != null &&  !_productDal.UpdateProduct(productmodel) ;
+        public void UpdateProduct(Product productmodel)
+        {
+            if (productmodel != null)
+            {
+                _productDal.UpdateProduct(productmodel);
+            }
+        } 
 
         //get product
         public Product GetProduct(int id) => _productDal.GetProduct(id);
@@ -37,10 +43,9 @@ namespace Logic
         public List<Product> ListOfProducts() => _productDal.GetAllproducts();
 
         //remove product
-        public bool RemoveProduct(int id)
+        public void RemoveProduct(int id)
         {
-            bool deleted = _productDal.RemoveProduct(id);
-            return deleted;
+            _productDal.RemoveProduct(id);
         }
     }
 }

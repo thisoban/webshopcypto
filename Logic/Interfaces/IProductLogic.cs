@@ -8,19 +8,19 @@ using DataModel;
 namespace Logic.Interfaces
 {
     public interface IProductLogic
-    {
-        public void CreateProduct(Product productmodel);
+    { 
+        void CreateProduct(Product productmodel);
        
         //update
-        public bool UpdateProduct(Product productmodel);
+        void UpdateProduct(Product productmodel);
 
         //get product
-        public Product GetProduct(int id);
+        Product GetProduct(int id);
 
         //get list product
-        public List<Product> ListOfProducts();
+        List<Product> ListOfProducts();
 
         //remove product
-        public bool RemoveProduct(int id);
+        void RemoveProduct(int id);
     }
 }

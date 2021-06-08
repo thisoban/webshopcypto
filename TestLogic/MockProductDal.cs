@@ -11,13 +11,13 @@ namespace TestLogic
 {
     public class MockProductDal : IProductDal
     {
-        public bool CreateProduct(Product productmodel)
+        List<Product> products = new List<Product>();
+        public void CreateProduct(Product productmodel)
         {
-            if(productmodel != null)
+            if (productmodel.Id == 10)
             {
-                return true;
+                products.Add(productmodel);
             }
-            return false;
         }
 
         public List<Product> GetAllproducts()
@@ -74,18 +74,18 @@ namespace TestLogic
             return product;
         }
 
-        public bool RemoveProduct(int id)
+        public void RemoveProduct(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateProduct(Product productmodel)
+        public void UpdateProduct(Product productmodel)
         {
             if (productmodel.Id == 5)
             {
-                return true;
+                
             }
-            return false;
+            
         }
     }
 }
