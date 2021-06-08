@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using Logic.Interfaces
+using Logic.Interfaces;
 using DAL;
 using Logic;
 using DataModel;
@@ -19,13 +19,13 @@ namespace WebApplication.Controllers
         // GET: ProductController
         public ProductController( IProductLogic productLogic)
         {
-            _ProductLogic = productLogic;
+            _Iproductlogic = productLogic;
         }
         public ActionResult Index()
         {
             try
             {
-              return View(_ProductLogic.ListOfProducts());
+              return View(_Iproductlogic.ListOfProducts());
             }catch(Exception e)
             {
                 string errro = e.Message ;
@@ -38,7 +38,7 @@ namespace WebApplication.Controllers
         {
             try
             {
-                Product product = _ProductLogic.GetProduct(id);
+                Product product = _Iproductlogic.GetProduct(id);
 
                 if (product != null)
                 {
@@ -67,7 +67,7 @@ namespace WebApplication.Controllers
         {
             try
             {
-                _ProductLogic.CreateProduct(collection);
+                _Iproductlogic.CreateProduct(collection);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception)
@@ -75,15 +75,12 @@ namespace WebApplication.Controllers
 
                 return View(collection);
             }
-          
-            
-            
         }
 
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(_ProductLogic.GetProduct(id));
+            return View(_Iproductlogic.GetProduct(id));
         }
 
         // POST: ProductController/Edit/5
@@ -93,7 +90,7 @@ namespace WebApplication.Controllers
         {
             try
             {
-                _ProductLogic.UpdateProduct(product);
+                _Iproductlogic.UpdateProduct(product);
                 return RedirectToAction(nameof(Index));
 
             }
@@ -107,7 +104,7 @@ namespace WebApplication.Controllers
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(_ProductLogic.GetProduct(id));
+            return View(_Iproductlogic.GetProduct(id));
         }
 
         // POST: ProductController/Delete/5

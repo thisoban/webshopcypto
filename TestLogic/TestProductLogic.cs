@@ -23,7 +23,8 @@ namespace TestLogic
             SellPrice = 20,
             Buyprice = 10,
             Serialnumber =112344};
-           Assert.IsTrue(Logic.CreateProduct(product));
+         //  Assert.IsTrue(Logic.CreateProduct(product));
+         //check uitvoeren door 
            // ProductManager productManager = new ProductManager(_context).CreateProduct(product);
            
         }
