@@ -10,10 +10,10 @@ namespace DAL
 {
     public interface IProductDal
     {
-        bool CreateProduct(Product productmodel);
+        void CreateProduct(Product productmodel);
 
         //update
-        bool UpdateProduct(Product productmodel);
+        void UpdateProduct(Product productmodel);
 
         //get product
         Product GetProduct(int id);
@@ -22,7 +22,7 @@ namespace DAL
         List<Product> GetAllproducts();
 
         //remove product
-        bool RemoveProduct(int id);
+        void RemoveProduct(int id);
         
     }
 }
