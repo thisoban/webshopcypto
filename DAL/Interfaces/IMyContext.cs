@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IMyContext :IDisposable
+    public interface IMyContext : IDisposable
     {
          DbSet<User> Users { get; set; }
          DbSet<Customer> Customers { get; set; }

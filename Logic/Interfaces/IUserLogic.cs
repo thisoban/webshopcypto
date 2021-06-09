@@ -9,11 +9,11 @@ namespace Logic.Interfaces
 {
     public interface IUserLogic
     {
-        public User GetUserById(int id);
-        public User GetUserByName(User user);
-        public  bool CheckUserIsValid(string username, string password);
-        public  bool DeleteUser(int id);
-        public  void UpdateUser(User user);
-        public  bool CreateUser(User user);
+         User GetUserById(int id);
+         User GetUserByName(User user);
+          bool CheckUserIsValid(string username, string password);
+          bool DeleteUser(int id);
+          void UpdateUser(User user);
+          bool CreateUser(User user);
     }
 }

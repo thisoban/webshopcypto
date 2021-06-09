@@ -9,10 +9,10 @@ namespace Logic.Interfaces
 {
     public interface ICustomerLogic
     {
-        public Customer GetCustomerDetail(int id);
+         Customer GetCustomerDetail(int id);
 
-        public bool UpdateCustomerDetails(Customer customer, int id);
+         bool UpdateCustomerDetails(Customer customer, int id);
 
-        public bool removeCustomer(int id);
+         bool removeCustomer(int id);
     }
 }
