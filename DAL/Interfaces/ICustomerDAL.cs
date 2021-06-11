@@ -12,8 +12,8 @@ namespace DAL.Interfaces
         //getcustomer
         Customer GetCustomer(int id);
         //insertcustomer
-        bool InsertCustomer(Customer customer);
+        void InsertCustomer(Customer customer);
         //updatecustomer
-        bool UpdateCustomer(Customer customer);
+        void UpdateCustomer(Customer customer);
     }
 }

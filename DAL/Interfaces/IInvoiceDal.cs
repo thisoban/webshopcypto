@@ -17,7 +17,7 @@ namespace DAL.Interfaces
         //get invoicedetails
         Invoice GetInvoiceDetails(int id);
         //updatestatus invoice
-        bool UpdateInvoiceStatus(int id,OrderStatus status);
-        bool CreateInvoice(Invoice invoice);
+        void UpdateInvoiceStatus(int id,OrderStatus status);
+        void CreateInvoice(Invoice invoice);
     }
 }

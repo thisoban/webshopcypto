@@ -13,40 +13,40 @@ namespace DAL
 {
     public class InvoiceDal :  IInvoiceDal
     {
-        private readonly MyContext _context;
+        private readonly IMyContext _context;
 
-        public InvoiceDal( MyContext context)
+        public InvoiceDal(IMyContext context)
         {
             _context = context;
         }
-        public bool CreateInvoice(Invoice invoice)
+        public void CreateInvoice(Invoice invoice)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Invoice> GetAllInvoices()
-        {
-            throw new NotImplementedException();
+            _context.Orders.Add(invoice);
+            _context.SaveChanges();
         }
 
         public List<Invoice> GetAllinvoices()
         {
-            throw new NotImplementedException();
+            return _context.Orders.ToList();
         }
 
         public List<Invoice> GetAllInvoicesFromOneUser(int userid)
         {
-            throw new NotImplementedException();
+          return  _context.Orders.Where(x => x.Customer.User.Id == userid).ToList();
         }
 
         public Invoice GetInvoiceDetails(int id)
         {
-            throw new NotImplementedException();
+            return _context.Orders.Include("OrderLine").Where(x => x.Id == id).FirstOrDefault();
         }
 
-        public bool UpdateInvoiceStatus(int id, OrderStatus status)
+        public void UpdateInvoiceStatus(int id, OrderStatus status)
         {
-            throw new NotImplementedException();
+            // do something first in logic to check if its there and then update if possible otherwise throw expection 
+            Invoice invoice = GetInvoiceDetails(id);
+            invoice.Status = status;
+            _context.Orders.Update(invoice);
+            _context.SaveChanges();
         }
     }
 }

@@ -13,17 +13,16 @@ namespace Logic
     public class OrderLogic
     {
         private readonly IMyContext _context;
-
-        public OrderLogic(IMyContext context)
+        private readonly IInvoiceDal _invoice;
+        public OrderLogic(IMyContext context, IInvoiceDal invoice)
         {
             _context = context;
+            _invoice = invoice;
         }
         //get all orders
         public List<Invoice> GetAllOrders()
         {
-            List<Invoice> orders = _context.Orders.ToList();
-
-            return orders;
+            return _invoice.GetAllinvoices(); ;
         }
         //get all orders from one account
         public List<Invoice> GetAllOrdersFromAccount(int id)

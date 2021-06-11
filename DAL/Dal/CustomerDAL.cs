@@ -11,8 +11,8 @@ namespace DAL.Dal
 {
    public class CustomerDAL : ICustomerDal
     {
-        private readonly MyContext _context;
-        public CustomerDAL(MyContext context)
+        private readonly IMyContext _context;
+        public CustomerDAL(IMyContext context)
         {
             _context = context;
         }
@@ -23,35 +23,16 @@ namespace DAL.Dal
                     .FirstOrDefault();
         }
 
-        public bool InsertCustomer(Customer customer)
+        public void InsertCustomer(Customer customer)
         {
-            bool created = false;
-            try
-            {
-                _context.Customers.Add(customer);
-                _context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            throw new NotImplementedException();
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
         }
 
-        public bool UpdateCustomer(Customer customer)
+        public void UpdateCustomer(Customer customer)
         {
-            bool updated = false;
-            try
-            {
-                _context.Customers.Update(customer);
-                _context.SaveChanges();
-                updated = true;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return updated;
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
         }
     }
 }

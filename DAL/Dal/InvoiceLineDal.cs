@@ -13,9 +13,9 @@ namespace DAL.Dal
 {
     public class InvoiceLineDal : IInvoiceLineDal
     {
-        private readonly MyContext _context;
+        private readonly IMyContext _context;
         
-        public InvoiceLineDal(MyContext context)
+        public InvoiceLineDal(IMyContext context)
         {
             _context = context;
         }
