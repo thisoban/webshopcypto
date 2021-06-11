@@ -13,10 +13,10 @@ namespace DAL
    public class UserDAL : IUserDal
     {
         //getuser
-        private readonly MyContext _context;
-        public UserDAL()
+        private readonly IMyContext _context;
+        public UserDAL(IMyContext context)
         {
-            
+            _context = context;
         }
         public User GetUserById(int id)
         {
@@ -114,7 +114,6 @@ namespace DAL
                 Console.WriteLine(e);
                 throw;
             }
-
             return getUser;
         }
     }

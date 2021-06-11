@@ -15,31 +15,24 @@ namespace DAL
     {
         private readonly IMyContext _context;
 
-        public InvoiceDal(IMyContext context)
-        {
-            _context = context;
-        }
+        public InvoiceDal(IMyContext context) => _context = context;
         public void CreateInvoice(Invoice invoice)
         {
             _context.Orders.Add(invoice);
             _context.SaveChanges();
         }
-
         public List<Invoice> GetAllinvoices()
         {
             return _context.Orders.ToList();
         }
-
         public List<Invoice> GetAllInvoicesFromOneUser(int userid)
         {
           return  _context.Orders.Where(x => x.Customer.User.Id == userid).ToList();
         }
-
         public Invoice GetInvoiceDetails(int id)
         {
-            return _context.Orders.Include("OrderLine").Where(x => x.Id == id).FirstOrDefault();
+            return _context.Orders.Include("customer").Include("OrderLine").Where(x => x.Id == id).FirstOrDefault();
         }
-
         public void UpdateInvoiceStatus(int id, OrderStatus status)
         {
             // do something first in logic to check if its there and then update if possible otherwise throw expection 

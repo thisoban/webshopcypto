@@ -17,14 +17,16 @@ namespace TestLogic
         public void CreateProductSuccesful()
         {
             Product product = new Product() { 
-                Id=10,
+            
             Name = "test",
             Description ="testing",
             Quantity =101,
             SellPrice = 20,
             Buyprice = 10,
-            Serialnumber =112344};
-         //  Assert.IsTrue(Logic.CreateProduct(product));
+            Serialnumber = 112344};
+        Logic.CreateProduct(product);
+            //kan ik die via logic ophalen
+
          //check uitvoeren door 
            // ProductManager productManager = new ProductManager(_context).CreateProduct(product);
            

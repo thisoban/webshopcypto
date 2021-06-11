@@ -14,10 +14,7 @@ namespace TestLogic
         List<Product> products = new List<Product>();
         public void CreateProduct(Product productmodel)
         {
-            if (productmodel.Id == 10)
-            {
                 products.Add(productmodel);
-            }
         }
 
         public List<Product> GetAllproducts()

@@ -20,9 +20,9 @@ namespace WebApplication.Controllers
 
         private readonly IUserLogic _userLogic;
         // GET: ProductController
-        public AuthController( )
+        public AuthController( IUserLogic logic)
         {
-            _userLogic = new UserLogic(new UserDAL());
+            _userLogic = logic;
         }
         public IActionResult Login()
         {
@@ -42,10 +42,7 @@ namespace WebApplication.Controllers
                
                 string test = "test";
                 Response.Cookies.Append(test, user.Id.ToString());
-
             }
-       
-
             return View(loginForm);
         }
         [HttpGet]
