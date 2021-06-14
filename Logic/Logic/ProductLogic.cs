@@ -26,7 +26,11 @@ namespace Logic
             {
                 _productDal.CreateProduct(productmodel);
             }
-            throw new ArgumentException("product leeg is");
+            else
+            {
+                throw new ArgumentException("product leeg is");
+            }
+            
         }
         //update
         public void UpdateProduct(Product productmodel)

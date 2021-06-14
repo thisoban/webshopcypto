@@ -45,7 +45,7 @@ namespace TestLogic
     
         public void CreateProduct(Product productmodel)
         {
-                products.Add(productmodel);
+           products.Add(productmodel);
         }
 
         public List<Product> GetAllproducts()
@@ -55,15 +55,7 @@ namespace TestLogic
 
         public Product GetProduct(int id)
         {
-            Product product = new Product
-            {
-                Name = "tester",
-                Serialnumber = 11234,
-                SellPrice = 110000,
-                Buyprice = 110000,
-                Id = 5,
-                Description = "test",
-            };
+            Product product = products.Where(x => x.Id == id).FirstOrDefault();
             return product;
         }
 
@@ -73,7 +65,12 @@ namespace TestLogic
         }
         public void UpdateProduct(Product productmodel)
         {
-            products.Where(x => x.Id == productmodel.Id);
+           Product product =  products.Where(x => x.Id == productmodel.Id).FirstOrDefault();
+            product.Name = product.Name;
+            product.Description = productmodel.Description;
+            product.SellPrice = productmodel.SellPrice;
+            product.Buyprice = productmodel.Buyprice;
+            product.Serialnumber = product.Serialnumber;
         }
     }
 }
