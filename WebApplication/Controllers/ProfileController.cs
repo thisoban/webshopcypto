@@ -13,7 +13,7 @@ namespace WebApplication.Controllers
         // GET: ProfileController1
         public ActionResult Index()
         {
-            
+            Request.Cookies
             return View();
         }
 

@@ -48,7 +48,6 @@ namespace WebApplication.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-
             return View();
         }
 
@@ -56,15 +55,27 @@ namespace WebApplication.Controllers
         public IActionResult Register(RegisterViewModel registerForm)
         {
             //TODO
-            try
+            if (registerForm.Password == registerForm.PasswordRepeat)
             {
+                try
+                {
+                    User user = new User()
+                    {
+                        Username = registerForm.Name,
+                        Email = registerForm.Email,
+                        Password = registerForm.Password,
+                        Firstname = registerForm.
+                    };
+                _userLogic.CreateUser(user)
                 return Redirect("/home");
-            }
-            catch (Exception)
-            {
+                }
+                catch (Exception)
+                {
 
-                throw;
-            } 
+                    throw;
+                }
+            }
+           
         }
 
         [HttpGet]
