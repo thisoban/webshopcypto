@@ -43,10 +43,10 @@ namespace TestLogic
             };
 
             Logic.CreateProduct(product);
-            Logic.GetProduct()
+            Product testpoduct = Logic.GetProduct(product.Id);
 
 
-            Assert.IsNotNull();
+            Assert.IsNotNull(testpoduct);
             
         }
         [TestMethod]

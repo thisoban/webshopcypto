@@ -4,16 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Logic.Interfaces;
 
 namespace WebApplication.Controllers
 {
-    public class OrderController : Controller
+    public class InvoiceController : Controller
     {
+        private readonly IInvoiceLogic _logic;
+        public InvoiceController(IInvoiceLogic  logic) => _logic = logic; 
         // GET: ORderController
         public ActionResult Index()
         {
             //get all order from that person
+            //if (Request.Cookies["User"].)
+            //{
 
+            //}
             //or get orders as admin
             return View();
         }
@@ -27,6 +33,8 @@ namespace WebApplication.Controllers
         // GET: ORderController/Create
         public ActionResult Create()
         {
+            //create alleen voor winkelmand aanmaken
+            //wanneer er een bestaat die niet is afgerond niet aanmaken
             return View();
         }
 

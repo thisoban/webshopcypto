@@ -26,24 +26,31 @@ namespace WebApplication.Controllers
         }
         public IActionResult Login()
         {
-            return View();
+            LoginViewModel login = new LoginViewModel();
+            login.ErrorMessage = null;
+            return View(login);
         }
         [HttpPost]
         public IActionResult Login(LoginViewModel loginForm)
         {
-            User formuser = new User()
+            if (loginForm.Username != null && loginForm.Password != null)
             {
-                Username = loginForm.Username,
-                Password = loginForm.Password
-            };
-            if (_userLogic.CheckUserIsValid(loginForm.Username, loginForm.Password))
-            {
-               User user = _userLogic.GetUserByName(formuser);
-               
-                string test = "test";
-                Response.Cookies.Append(test, user.Id.ToString());
+                User formuser = new User()
+                {
+                    Username = loginForm.Username,
+                    Password = loginForm.Password
+                };
+                if (_userLogic.CheckUserIsValid(loginForm.Username, loginForm.Password))
+                {
+                    User user = _userLogic.GetUserByName(formuser);
+
+                    string userlogin = "test";
+                    Response.Cookies.Append(userlogin, user.Id.ToString());
+                }
+                return View(loginForm);
             }
-            return View(loginForm);
+            loginForm.ErrorMessage = "vul alstublieft gegevens in.";
+            return View(loginForm);        
         }
         [HttpGet]
         public IActionResult Register()

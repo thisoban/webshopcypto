@@ -31,12 +31,20 @@ using DAL;
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddDbContext<MyContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddControllersWithViews();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
+            
+            //logic
             services.AddScoped<IProductLogic, ProductLogic>();
+            services.AddScoped<IUserLogic, UserLogic>();
+            //services.AddScoped<IInvoiceLogic,>
+
+            //dal
             services.AddScoped<IProductDal, ProductDal>();
+            services.AddScoped<IUserDal, UserDAL>();
+
+            //database
             services.AddScoped<IMyContext, MyContext>();
             services.AddAuthorization();
         }
