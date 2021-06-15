@@ -12,10 +12,7 @@ namespace Logic.Logic
     public class InvoiceLogic : IInvoiceLogic
     {
         private readonly IInvoiceDal _dal;
-        public InvoiceLogic(IInvoiceDal Dal)
-        {
-            _dal = Dal;
-        }
+        public InvoiceLogic(IInvoiceDal Dal) => _dal = Dal;
         public void CreateInvoice(Invoice invoice)
         {
             if (invoice != null)
@@ -30,17 +27,25 @@ namespace Logic.Logic
 
         public List<Invoice> GetAllInvoices()
         {
-          return  _dal.GetAllinvoices();
+            List<Invoice> invoices = _dal.GetAllinvoices();
+            if (invoices!= null)
+            {
+                return invoices;
+            }
+            else
+            {
+                throw new ArgumentException("couldn't find any products");
+            }
+            
+        }
+        public List<Invoice> GetAllInvoicesFromUser(int userid)
+        {
+           return _dal.GetAllInvoicesFromOneUser(userid);
         }
 
-        public List<Invoice> GetAllInvoicesFromUser()
+        public Invoice GetInvoice(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public void GetInvoice(Invoice invoice)
-        {
-            throw new NotImplementedException();
+            return _dal.GetInvoiceDetails(id);
         }
 
         public void RemoveInvoice(Invoice invoice, int id)
@@ -50,6 +55,7 @@ namespace Logic.Logic
 
         public void UpdateInvoice(Invoice invoice, int id)
         {
+            Invoice oldinvoice = _dal.GetInvoiceDetails(id);
             throw new NotImplementedException();
         }
     }

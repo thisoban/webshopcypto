@@ -61,12 +61,12 @@ namespace WebApplication.Controllers
                 {
                     User user = new User()
                     {
-                        Username = registerForm.Name,
+                        Username = registerForm.Username,
                         Email = registerForm.Email,
                         Password = registerForm.Password,
-                        Firstname = registerForm.
+                        Firstname = registerForm.Firstname
                     };
-                _userLogic.CreateUser(user)
+                    _userLogic.CreateUser(user);
                 return Redirect("/home");
                 }
                 catch (Exception)
@@ -75,6 +75,7 @@ namespace WebApplication.Controllers
                     throw;
                 }
             }
+            return View();
            
         }
 

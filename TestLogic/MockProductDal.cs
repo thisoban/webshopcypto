@@ -65,7 +65,7 @@ namespace TestLogic
         }
         public void UpdateProduct(Product productmodel)
         {
-           Product product =  products.Where(x => x.Id == productmodel.Id).FirstOrDefault();
+            Product product = products.SingleOrDefault(x => x.Id == productmodel.Id);
             product.Name = product.Name;
             product.Description = productmodel.Description;
             product.SellPrice = productmodel.SellPrice;

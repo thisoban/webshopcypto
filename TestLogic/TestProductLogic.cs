@@ -24,16 +24,54 @@ namespace TestLogic
             SellPrice = 20,
             Buyprice = 10,
             Serialnumber = 112344};
+
             Logic.CreateProduct(product);
            
             Assert.IsNotNull(Logic.GetProduct(product.Id));
             Assert.AreEqual(product, Logic.GetProduct(product.Id));
         }
         [TestMethod]
+        public void CreateProductInvalid()
+        {
+            Product product = new Product()
+            {
+                Id = 5,
+                Name = "test",
+                Description = "yannick loopt keihard tegen de muur",
+                Quantity = 10,
+                Serialnumber = 1234564
+            };
+
+            Logic.CreateProduct(product);
+            Logic.GetProduct()
+
+
+            Assert.IsNotNull();
+            
+        }
+        [TestMethod]
         public void GetProductSuccesful()
         {
-            Assert.IsNotNull(Logic.GetProduct(1));
-            Assert.AreEqual(Logic.GetProduct(1), Logic.GetProduct(1));
+            // Arange
+            Product product = new Product() 
+            {
+                Id = 3,
+                Description = "coin that it sought after",
+                Name = "thetacoin",
+                SellPrice = 13000,
+                Buyprice = 8000,
+                Serialnumber = 789,
+                Quantity = 5
+            };
+
+
+            // Act
+            Product productToTest = Logic.GetProduct(3);
+
+            // Assert
+            Assert.IsNotNull(productToTest);
+            Assert.Equals(product.Name, productToTest.Name);
+           
         }
         [ExpectedException(typeof(ArgumentException),
              "something went wrong.")]
@@ -50,14 +88,14 @@ namespace TestLogic
             Product oldproduct = Logic.GetProduct(3);
             Product product = new Product()
             {   Id= 3,
-                Name = "tester",
+                Name = "123",
                 Serialnumber= 11234,
                 SellPrice = 110000,
                 Buyprice = 110000,
             };
             Logic.UpdateProduct(product);
                
-            Assert.AreNotSame(oldproduct.Name, Logic.GetProduct(3).Name);
+            Assert.IsTrue(oldproduct.Name == Logic.GetProduct(3).Name);
            
          //   Assert.IsTrue(Logic.UpdateProduct(product));
         }

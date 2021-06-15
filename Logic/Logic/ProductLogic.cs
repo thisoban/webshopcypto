@@ -22,7 +22,7 @@ namespace Logic
         // create
         public void CreateProduct(Product productmodel)
         {   
-            if (productmodel !=null)
+            if (productmodel.Name !=null)
             {
                 _productDal.CreateProduct(productmodel);
             }

@@ -10,8 +10,8 @@ namespace Logic.Interfaces
    public interface IInvoiceLogic
     {
         List<Invoice> GetAllInvoices();
-        List<Invoice> GetAllInvoicesFromUser();
-        void GetInvoice(Invoice invoice);
+        List<Invoice> GetAllInvoicesFromUser(int userid);
+        Invoice GetInvoice(int id);
         void CreateInvoice(Invoice invoice);
         void UpdateInvoice(Invoice invoice, int id);
         void RemoveInvoice(Invoice invoice, int id);
