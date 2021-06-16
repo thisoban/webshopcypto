@@ -25,7 +25,12 @@ namespace Logic
         }
         public User GetUserByName(User user)
         {
-            return _context.GetUserByName(user);
+            if (user.Username != null)
+            {
+                return _context.GetUserByName(user);
+            }
+            throw new ArgumentNullException("couldnt find user");
+           
         }
        
         public bool CreateUser(User user)
@@ -39,12 +44,12 @@ namespace Logic
         }
         public void UpdateUser(User user)
         {
+            User GetUser = _context.GetUserByName(user);
             if (_context.UpdateUser(user)) 
             {
-                //return error message
+                throw new ArgumentException("succesful done");
             }
-            //return true
-            throw new NotImplementedException();
+            throw new ArgumentException("unsuccesful");
         }
 
         public bool CheckUserIsValid(string username, string password)

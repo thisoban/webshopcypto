@@ -16,19 +16,20 @@ namespace WebApplication.Controllers
         // GET: ProfileController1
         public ActionResult Index()
         {
-            //laat profiel zien
-           string username =  Request.Cookies["user"].Split(',')[1];
-            User user = new User(){ Username = username};
-
-           User userdetail = _logic.GetUserByName(user);
-            //Request.Cookies;
+          
             return View();
         }
 
         // GET: ProfileController1/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            return View();
+            //laat profiel zien
+            string username = Request.Cookies["user"].Split(',')[1];
+            User user = new User() { Username = username };
+
+            User userdetail = _logic.GetUserByName(user);
+            //Request.Cookies;
+            return View(user);
         }
 
         // GET: ProfileController1/Create

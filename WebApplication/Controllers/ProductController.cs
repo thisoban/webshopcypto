@@ -17,19 +17,17 @@ namespace WebApplication.Controllers
         //private readonly ProductLogic _ProductLogic;
         private readonly IProductLogic _Iproductlogic;
         // GET: ProductController
-        public ProductController( IProductLogic productLogic)
-        {
-            _Iproductlogic = productLogic;
-        }
+        public ProductController( IProductLogic productLogic) => _Iproductlogic = productLogic;
+        
         public ActionResult Index()
         {
             try
             {
-              return View(_Iproductlogic.ListOfProducts());
+                return View(_Iproductlogic.ListOfProducts());
             }catch(Exception e)
             {
                 string error = e.Message ;
-             return View();
+                return View();
             }
         }
 
