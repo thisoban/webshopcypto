@@ -11,6 +11,7 @@ namespace TestLogic
 {
     public class MockProductDal : IProductDal
     {
+
         List<Product> products = new List<Product>() {
               new Product() {
                 Id = 1,
@@ -66,11 +67,11 @@ namespace TestLogic
         public void UpdateProduct(Product productmodel)
         {
             Product product = products.SingleOrDefault(x => x.Id == productmodel.Id);
-            product.Name = product.Name;
+            product.Name = productmodel.Name;
             product.Description = productmodel.Description;
             product.SellPrice = productmodel.SellPrice;
             product.Buyprice = productmodel.Buyprice;
-            product.Serialnumber = product.Serialnumber;
+            product.Serialnumber = productmodel.Serialnumber;
         }
     }
 }

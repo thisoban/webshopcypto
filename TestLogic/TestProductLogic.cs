@@ -11,9 +11,7 @@ namespace TestLogic
     public class TestProductLogic
     {
         private readonly ProductLogic Logic = new ProductLogic(new MockProductDal());
-        
-        //TODO: maak productmanager createproduct checks of product exist op bepaalde properties van product
-        [TestMethod]
+
         public void CreateProductSuccesful()
         {
             Product product = new Product() {
@@ -45,10 +43,9 @@ namespace TestLogic
             Logic.CreateProduct(product);
             Product testpoduct = Logic.GetProduct(product.Id);
 
-
             Assert.IsNotNull(testpoduct);
-            
         }
+
         [TestMethod]
         public void GetProductSuccesful()
         {
@@ -67,17 +64,16 @@ namespace TestLogic
             Product productToTest = Logic.GetProduct(3);
 
             // Assert
-            Assert.IsNotNull(productToTest);
-            Assert.Equals(product.Name, productToTest.Name);
+            Assert.IsNotNull(productToTest.Name);
+            Assert.AreEqual(product.Name, productToTest.Name);
            
         }
-        //[ExpectedException(typeof(ArgumentException),
-        //     "something went wrong.")]
+        [ExpectedException(typeof(NullReferenceException))]
         [TestMethod]
         public void GetProductInvalid()
         {
             Product product = Logic.GetProduct(5);
-            Assert.IsNull(product);
+            Assert.IsNull(product.Name);
         }
 
         [TestMethod]
@@ -95,21 +91,28 @@ namespace TestLogic
 
             Product updatedproduct = Logic.GetProduct(3);
                
-            Assert.IsTrue(oldproduct.Name == updatedproduct.Name);
+            Assert.IsFalse( "thetacoin" == updatedproduct.Name);
            
          //   Assert.IsTrue(Logic.UpdateProduct(product));
         }
+        [ExpectedException(typeof(NullReferenceException))]
         [TestMethod]
         public void UpdateProductUnValid()
         {
+            Product Oldproduct = Logic.GetProduct(5);
             Product product = new Product
             {
+                Id = 5,
                 Name = "tester",
                 Serialnumber = 11234,
                 SellPrice = 110000,
                 Buyprice = 110000,
             };
-            // Assert.IsTrue(Logic.UpdateProduct(product));
+
+            Logic.UpdateProduct(product);
+            Product updatedproduct = Logic.GetProduct(5);
+
+           Assert.IsNull(updatedproduct.Name) ;
         }
     }
 }
