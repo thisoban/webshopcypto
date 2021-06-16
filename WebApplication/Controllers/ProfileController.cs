@@ -5,14 +5,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Logic.Interfaces;
 
 namespace WebApplication.Controllers
 {
     public class ProfileController : Controller
     {
+        private readonly IUserLogic _logic;
+        public ProfileController(IUserLogic logic) => _logic = logic;
         // GET: ProfileController1
         public ActionResult Index()
         {
+            //laat profiel zien
+           string username =  Request.Cookies["user"].Split(',')[1];
+            User user = new User(){ Username = username};
+
+           User userdetail = _logic.GetUserByName(user);
             //Request.Cookies;
             return View();
         }

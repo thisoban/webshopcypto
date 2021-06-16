@@ -31,9 +31,11 @@
                     <ul class="nav navbar-nav navbar-right">
 
                         <li class="nav-item">
-                            @if (User.Identity.IsAuthenticated)
+                           
+                            @if (Context.Request.Cookies["user"] != null)
                             {
-                                <h6>Welcome @User.Identity.Name</h6>
+                                <h6>Welcome @Context.Request.Cookies["user"].Split(',')[1]</h6>
+                                <a href="/profile/">profile</a>
                                 <a href="/auth/logout">Logout</a>
                             }
                             else

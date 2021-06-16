@@ -33,7 +33,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel loginForm)
         {
-            if (loginForm.Username != null && loginForm.Password != null)
+            if (loginForm.Username != "" && loginForm.Password != "")
             {
                 User formuser = new User()
                 {
@@ -44,9 +44,11 @@ namespace WebApplication.Controllers
                 {
                     User user = _userLogic.GetUserByName(formuser);
 
-                    string userlogin = "test";
-                    Response.Cookies.Append(userlogin, user.Id.ToString());
+                    string userlogin = "user";
+                    
+                    Response.Cookies.Append(userlogin, $"{user.Id},{user.Firstname}");
                 }
+                loginForm.ErrorMessage = "please fill in correct username or passwaord";
                 return View(loginForm);
             }
             loginForm.ErrorMessage = "vul alstublieft gegevens in.";
@@ -89,7 +91,8 @@ namespace WebApplication.Controllers
         [HttpGet]
         public IActionResult Logout()
         {
-          //  await _signInManager.SignOutAsync();
+            //  await _signInManager.SignOutAsync();
+            Response.Cookies.Delete("user");
             return Redirect("/home");
         }
     }
