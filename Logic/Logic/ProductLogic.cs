@@ -39,6 +39,10 @@ namespace Logic
             {
                 _productDal.UpdateProduct(productmodel);
             }
+            else
+            {
+                throw new ArgumentException("productdetails missing");
+            }
         } 
 
         //get product

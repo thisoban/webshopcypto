@@ -63,8 +63,6 @@ namespace TestLogic
                 Serialnumber = 789,
                 Quantity = 5
             };
-
-
             // Act
             Product productToTest = Logic.GetProduct(3);
 
@@ -73,13 +71,13 @@ namespace TestLogic
             Assert.Equals(product.Name, productToTest.Name);
            
         }
-        [ExpectedException(typeof(ArgumentException),
-             "something went wrong.")]
+        //[ExpectedException(typeof(ArgumentException),
+        //     "something went wrong.")]
         [TestMethod]
         public void GetProductInvalid()
         {
-            Assert.IsNull(Logic.GetProduct(5));
-            Assert.AreEqual(Logic.GetProduct(6), Logic.GetProduct(6));
+            Product product = Logic.GetProduct(5);
+            Assert.IsNull(product);
         }
 
         [TestMethod]
@@ -94,8 +92,10 @@ namespace TestLogic
                 Buyprice = 110000,
             };
             Logic.UpdateProduct(product);
+
+            Product updatedproduct = Logic.GetProduct(3);
                
-            Assert.IsTrue(oldproduct.Name == Logic.GetProduct(3).Name);
+            Assert.IsTrue(oldproduct.Name == updatedproduct.Name);
            
          //   Assert.IsTrue(Logic.UpdateProduct(product));
         }
