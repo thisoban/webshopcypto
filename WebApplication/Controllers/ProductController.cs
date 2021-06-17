@@ -68,9 +68,9 @@ namespace WebApplication.Controllers
                 _Iproductlogic.CreateProduct(collection);
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                collection.Description = e;
                 return View(collection);
             }
         }

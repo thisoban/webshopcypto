@@ -62,7 +62,7 @@ namespace TestLogic
 
         public void RemoveProduct(int id)
         {
-            throw new NotImplementedException();
+            
         }
         public void UpdateProduct(Product productmodel)
         {

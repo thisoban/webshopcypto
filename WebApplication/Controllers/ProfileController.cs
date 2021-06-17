@@ -29,29 +29,9 @@ namespace WebApplication.Controllers
 
             User userdetail = _logic.GetUserByName(user);
             //Request.Cookies;
-            return View(user);
+            return View(userdetail);
         }
 
-        // GET: ProfileController1/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ProfileController1/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: ProfileController1/Edit/5
         public ActionResult Edit(int id)
