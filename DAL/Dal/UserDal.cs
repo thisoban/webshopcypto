@@ -21,6 +21,8 @@ namespace DAL
         public User GetUserById(int id)
         {
             User user = _context.Users
+                .Include("Customers")
+                .Include("Roles")
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
             return user;
@@ -30,6 +32,8 @@ namespace DAL
         {
             return _context.Users
                 .Where(x => x.Username == name)
+                .Include("Customers")
+                .Include("Roles")
                 .FirstOrDefault();
         }
       
@@ -41,6 +45,7 @@ namespace DAL
             {
                 var context = _context.Users.Where(x => x.Id == id)
                      .Include("Customer")
+                     .Include("Roles")
                      .Include("Invoice")
                      .Include("InvoiceLine")
                      .FirstOrDefault();
@@ -64,6 +69,7 @@ namespace DAL
             context.Lastname = user.Lastname;
             context.Password = user.Password;
             context.Email = user.Email;
+            _context.Users.Update(user);
         }
 
         public bool CreateUser(User user)

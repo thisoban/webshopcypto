@@ -70,7 +70,7 @@ namespace WebApplication.Controllers
             }
             catch (Exception e)
             {
-                collection.Description = e;
+               
                 return View(collection);
             }
         }

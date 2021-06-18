@@ -69,6 +69,8 @@ namespace TestLogic
 
         public bool UpdateUser(User user)
         {
+            User Getuser = _users.Where(x => x.Id == user.Id).FirstOrDefault();
+            
             throw new NotImplementedException();
         }
     }

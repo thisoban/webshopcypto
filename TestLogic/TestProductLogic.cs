@@ -91,7 +91,7 @@ namespace TestLogic
 
             Product updatedproduct = Logic.GetProduct(3);
                
-            Assert.IsFalse( "thetacoin" == updatedproduct.Name);
+            Assert.IsFalse( oldproduct.Name ==  updatedproduct.Name);
            
          //   Assert.IsTrue(Logic.UpdateProduct(product));
         }
