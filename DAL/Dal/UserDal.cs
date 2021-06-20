@@ -28,14 +28,6 @@ namespace DAL
             return user;
              
         }
-        public User GetUserByName(string name)
-        {
-            return _context.Users
-                .Where(x => x.Username == name)
-                .Include("Customers")
-                .Include("Roles")
-                .FirstOrDefault();
-        }
       
         //remove user
         public bool DeleteUser(int id)
@@ -45,7 +37,7 @@ namespace DAL
             {
                 var context = _context.Users.Where(x => x.Id == id)
                      .Include("Customer")
-                     .Include("Roles")
+                     .Include("role")
                      .Include("Invoice")
                      .Include("InvoiceLine")
                      .FirstOrDefault();
