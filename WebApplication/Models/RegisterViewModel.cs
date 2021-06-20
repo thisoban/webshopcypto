@@ -13,5 +13,12 @@ namespace WebApplication.Models
         public string PasswordRepeat { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+        public string Street { get; set; }
+        public int Housenumber { get; set; }
+        public string Housenumberintial { get; set; }
+        public int Zipcode { get; set; }
+        public string ZipcodeCharacter { get; set; }
+        public string City { get; set; }
+
     }
 }

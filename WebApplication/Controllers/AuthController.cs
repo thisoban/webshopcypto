@@ -64,7 +64,6 @@ namespace WebApplication.Controllers
         [HttpPost]
         public IActionResult Register(RegisterViewModel registerForm)
         {
-            //TODO
             if (registerForm.Password == registerForm.PasswordRepeat)
             {
                 try
@@ -76,6 +75,17 @@ namespace WebApplication.Controllers
                         Password = registerForm.Password,
                         Firstname = registerForm.Firstname
                     };
+                    Customer customer = new Customer()
+                    {
+                        Street = registerForm.Street,
+                        Housenumber = registerForm.Housenumber,
+                        Housenumberintial = registerForm.Housenumberintial,
+                        Zipcode = registerForm.Zipcode,
+                        ZipcodeCharacter = registerForm.ZipcodeCharacter,
+                        City = registerForm.City,
+                        User = user
+                    };
+
                     _userLogic.CreateUser(user);
                 return Redirect("/home");
                 }

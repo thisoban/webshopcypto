@@ -40,7 +40,10 @@ namespace Logic
                 return true;
             }
             return false;
-           
+        }
+        public void CreateUserCustomer(User user , Customer customer)
+        {
+            
         }
         public void UpdateUser(User user)
         {

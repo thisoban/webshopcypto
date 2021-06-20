@@ -14,5 +14,6 @@ namespace Logic.Interfaces
          bool UpdateCustomerDetails(Customer customer, int id);
 
          bool removeCustomer(int id);
+        bool CreateCustomer(Customer customer);
     }
 }

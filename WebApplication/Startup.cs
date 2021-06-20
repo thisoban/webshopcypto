@@ -38,6 +38,7 @@ using DAL;
             //logic
             services.AddScoped<IProductLogic, ProductLogic>();
             services.AddScoped<IUserLogic, UserLogic>();
+            services.AddScoped<ICustomerLogic, CustomerLogic>();
             //services.AddScoped<IInvoiceLogic,>
 
             //dal
