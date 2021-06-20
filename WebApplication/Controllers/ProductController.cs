@@ -70,7 +70,6 @@ namespace WebApplication.Controllers
             }
             catch (Exception e)
             {
-               
                 return View(collection);
             }
         }
@@ -92,8 +91,12 @@ namespace WebApplication.Controllers
                 return RedirectToAction(nameof(Index));
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                if(e.Equals(new NullReferenceException()))
+                {
+                    return View();
+                }
                 //implement error
                 return View(product);
             } 

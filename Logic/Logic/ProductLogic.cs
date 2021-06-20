@@ -22,7 +22,7 @@ namespace Logic
         // create
         public void CreateProduct(Product productmodel)
         {   
-            if (productmodel.Name !=null )
+            if (NotEmpty(productmodel))
             {
                 _productDal.CreateProduct(productmodel);
             }
@@ -37,10 +37,15 @@ namespace Logic
         {
             if (productmodel != null)
             {
+                if (NotEmpty(productmodel))
+                {
+
+                }
                 _productDal.UpdateProduct(productmodel);
             }
             else
             {
+                //custom exception worden
                 throw new ArgumentException("productdetails missing");
             }
         } 
@@ -55,6 +60,15 @@ namespace Logic
         public void RemoveProduct(int id)
         {
             _productDal.RemoveProduct(id);
+        }
+
+        private bool NotEmpty(Product product)
+        {
+            if (product.Name != null && product.Serialnumber >= 0 && product.Description != null &&product.Buyprice >= 0 &&product.SellPrice >= 0 )
+            {
+                return true;
+            }
+                return false;
         }
     }
 }

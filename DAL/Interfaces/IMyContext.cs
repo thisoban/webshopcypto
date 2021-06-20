@@ -17,6 +17,6 @@ namespace DAL.Interfaces
          DbSet<Product> Products { get; set; }
          DbSet<Role> Roles { get; set; }
 
-        void SaveChanges();
+        int SaveChanges();
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using WebApplication.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,6 @@ namespace WebApplication.Controllers
         // GET: ProfileController1
         public ActionResult Index()
         {
-          
             return View();
         }
 
@@ -29,7 +29,9 @@ namespace WebApplication.Controllers
 
             User userdetail = _logic.GetUserByName(user);
             //Request.Cookies;
-            return View(userdetail);
+            ProffileDetailViewModel profile = new ProffileDetailViewModel(user);
+           
+            return View(profile);
         }
 
 

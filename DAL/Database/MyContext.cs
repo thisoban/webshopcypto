@@ -21,8 +21,7 @@ namespace DAL.Database
 
         public MyContext(DbContextOptions<MyContext> Options) : base(Options) { }
 
-        void IMyContext.SaveChanges()
-        {}
+        
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{

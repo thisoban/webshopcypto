@@ -68,16 +68,15 @@ namespace TestLogic
         public void UpdateProduct(Product productmodel)
         {
             Product oldproduct = products.SingleOrDefault(x => x.Id == productmodel.Id);
-            Product product = products.SingleOrDefault(x => x.Id == productmodel.Id);
-            product.Name = productmodel.Name;
-            product.Description = productmodel.Description;
-            product.SellPrice = productmodel.SellPrice;
-            product.Buyprice = productmodel.Buyprice;
-            product.Serialnumber = productmodel.Serialnumber;
-
-            products.Remove(oldproduct);
-            products.Add(productmodel);
-            
+            if (oldproduct != null)
+            {
+                products.Remove(oldproduct);
+                products.Add(productmodel);
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
         }
     }
 }

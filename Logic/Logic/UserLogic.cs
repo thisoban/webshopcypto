@@ -45,11 +45,15 @@ namespace Logic
         public void UpdateUser(User user)
         {
             User GetUser = _context.GetUserByName(user);
-            if (_context.UpdateUser(user)) 
+            if (GetUser != null)
             {
-                throw new ArgumentException("succesful done");
+                if (_context.UpdateUser(user))
+                {
+                    throw new ArgumentException("succesful done");
+                }
+                throw new ArgumentException("something went wrong with updating");
             }
-            throw new ArgumentException("unsuccesful");
+            throw new NullReferenceException(); ;
         }
 
         public bool CheckUserIsValid(string username, string password)

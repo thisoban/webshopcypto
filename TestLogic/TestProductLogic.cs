@@ -91,15 +91,12 @@ namespace TestLogic
 
             Product updatedproduct = Logic.GetProduct(3);
                
-            Assert.IsFalse( oldproduct.Name ==  updatedproduct.Name);
-           
-         //   Assert.IsTrue(Logic.UpdateProduct(product));
-        }
+            Assert.AreEqual(false, oldproduct.Name ==  updatedproduct.Name);
+            Assert.IsNotNull(updatedproduct.Name);        }
         [ExpectedException(typeof(NullReferenceException))]
         [TestMethod]
         public void UpdateProductUnValid()
         {
-            Product Oldproduct = Logic.GetProduct(5);
             Product product = new Product
             {
                 Id = 5,

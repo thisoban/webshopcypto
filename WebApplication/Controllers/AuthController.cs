@@ -46,12 +46,13 @@ namespace WebApplication.Controllers
 
                     string userlogin = "user";
                     
-                    Response.Cookies.Append(userlogin, $"{user.Id},{user.Firstname}");
+                    Response.Cookies.Append(userlogin, $"{user.Id},{user.Firstname}, {user.role.Id}");
+                    return Redirect("../Home/Index");
                 }
-                loginForm.ErrorMessage = "please fill in correct username or passwaord";
+                loginForm.ErrorMessage = "please fill in correct username or password";
                 return View(loginForm);
             }
-            loginForm.ErrorMessage = "vul alstublieft gegevens in.";
+            loginForm.ErrorMessage = "please fill in the fields";
             return View(loginForm);        
         }
         [HttpGet]
