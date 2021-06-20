@@ -19,6 +19,13 @@ namespace WebApplication.Models
         public int Zipcode { get; set; }
         public string ZipcodeCharacter { get; set; }
         public string City { get; set; }
+        public string ErrorMsg { get; set; }
+
+        public RegisterViewModel( string error)
+        {
+            ErrorMsg = error;
+        }
+        public RegisterViewModel() { }
 
     }
 }

@@ -16,8 +16,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using DAL;
  using DAL.Interfaces;
+using Logic.Logic;
+using DAL.Dal;
 
- namespace WebApplication
+namespace WebApplication
 {
     public class Startup
     {
@@ -44,6 +46,7 @@ using DAL;
             //dal
             services.AddScoped<IProductDal, ProductDal>();
             services.AddScoped<IUserDal, UserDAL>();
+            services.AddScoped<ICustomerDal, CustomerDAL>();
 
             //database
             services.AddScoped<IMyContext, MyContext>();

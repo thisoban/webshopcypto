@@ -12,13 +12,12 @@ namespace DAL.Dal
    public class CustomerDAL : ICustomerDal
     {
         private readonly IMyContext _context;
-        public CustomerDAL(IMyContext context)
-        {
-            _context = context;
-        }
+        public CustomerDAL(IMyContext context) => _context = context;
+       
         public Customer GetCustomer(int id)
         {
           return  _context.Customers
+                    
                     .Where(x => x.User.Id == id)
                     .FirstOrDefault();
         }

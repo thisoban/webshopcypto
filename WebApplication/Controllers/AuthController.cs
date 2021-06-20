@@ -19,10 +19,12 @@ namespace WebApplication.Controllers
     {
 
         private readonly IUserLogic _userLogic;
+        private readonly ICustomerLogic _customerLogic;
         // GET: ProductController
-        public AuthController( IUserLogic logic)
+        public AuthController( IUserLogic userLogic, ICustomerLogic customerLogic)
         {
-            _userLogic = logic;
+            _userLogic = userLogic;
+            _customerLogic = customerLogic;
         }
         public IActionResult Login()
         {
@@ -89,10 +91,10 @@ namespace WebApplication.Controllers
                     _userLogic.CreateUser(user);
                 return Redirect("/home");
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-
-                    throw;
+                    registerForm.ErrorMsg = e.ToString();
+                    return View(registerForm);
                 }
             }
             return View();
