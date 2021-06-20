@@ -5,6 +5,7 @@ using Logic.Interfaces;
 using DAL;
 using Logic;
 using DataModel;
+using WebApplication.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +24,15 @@ namespace WebApplication.Controllers
         {
             try
             {
-                return View(_Iproductlogic.ListOfProducts());
+                List<Product> products = _Iproductlogic.ListOfProducts();
+                List<ProductViewModel> viewproduct = new List<ProductViewModel>();
+                foreach (Product item in products)
+                {
+                    ProductViewModel product = new ProductViewModel(item);
+                    viewproduct.Add(product);
+                }
+                
+                return View();
             }catch(Exception e)
             {
                 string error = e.Message ;

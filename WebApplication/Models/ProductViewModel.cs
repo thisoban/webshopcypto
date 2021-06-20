@@ -15,5 +15,23 @@ namespace WebApplication.Models
         public decimal Buyprice { get; set; }
         public int Serialnumber { get; set; }
         public string ErrorMessage { get; set; }
+
+        public ProductViewModel(DataModel.Product product)
+        {
+            Id = product.Id;
+            Name = product.Name;
+            Description = product.Description;
+            Quantity = product.Quantity;
+            SellPrice = product.SellPrice;
+            Buyprice = product.Buyprice;
+            Serialnumber = product.Serialnumber;
+        }
+        public ProductViewModel(string error)
+        {
+            ErrorMessage = error;
+        }
+
+        public ProductViewModel() { }
+
     }
 }
