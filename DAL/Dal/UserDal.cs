@@ -112,6 +112,7 @@ namespace DAL
             try
             {
                 getUser = _context.Users
+                    .Include("role")
                     .Where(x => x.Username == user.Username)
                     .FirstOrDefault();
             }
