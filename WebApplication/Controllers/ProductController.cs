@@ -46,10 +46,11 @@ namespace WebApplication.Controllers
             try
             {
                 Product product = _Iproductlogic.GetProduct(id);
+                ProductViewModel productVM = new ProductViewModel(product);
 
                 if (product != null)
                 {
-                    return View(product);
+                    return View(productVM);
                 }
             }
             catch
@@ -74,6 +75,16 @@ namespace WebApplication.Controllers
         {
             try
             {
+                ProductViewModel productVM = new ProductViewModel();
+                // dogus comment, omdat je in je DataModel in de constructor van Product geen viewmodel kan meegeven heb ik het even zo gedaan. PS. je stinkt.
+                collection.Id = productVM.Id;
+                collection.Name = productVM.Name;
+                collection.Description = productVM.Description;
+                collection.Quantity = productVM.Quantity;
+                collection.SellPrice = productVM.SellPrice;
+                collection.Buyprice = productVM.Buyprice;
+                collection.Serialnumber = productVM.Serialnumber;
+
                 _Iproductlogic.CreateProduct(collection);
                 return RedirectToAction(nameof(Index));
             }
@@ -86,16 +97,30 @@ namespace WebApplication.Controllers
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(_Iproductlogic.GetProduct(id));
+            // idk of dit juist is check jij het maar
+            Product product = _Iproductlogic.GetProduct(id);
+            ProductViewModel productVM = new ProductViewModel(product);
+            return View(productVM);
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Product product)
+        [ValidateAntiForgeryToken] 
+        public ActionResult Edit(int id, ProductViewModel productVM)
         {
             try
             {
+                Product product = new Product();
+                // idk of ik hier Id van viewmodel moet pakken of van de edit(int id) zelf
+                product.Id = productVM.Id;
+                product.Name = productVM.Name;
+                product.Description = productVM.Description;
+                product.Quantity = productVM.Quantity;
+                product.SellPrice = productVM.SellPrice;
+                product.Buyprice = productVM.Buyprice;
+                product.Serialnumber = productVM.Serialnumber;
+
+
                 _Iproductlogic.UpdateProduct(product);
                 return RedirectToAction(nameof(Index));
 
@@ -107,14 +132,15 @@ namespace WebApplication.Controllers
                     return View();
                 }
                 //implement error
-                return View(product);
+                return View(productVM);
             } 
         }
 
         // GET: ProductController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(_Iproductlogic.GetProduct(id));
+            Product product = _Iproductlogic.GetProduct(id);
+            return View(product);
         }
 
         // POST: ProductController/Delete/5

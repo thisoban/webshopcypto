@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataModel;
 
 namespace WebApplication.Models
 {
@@ -16,7 +17,7 @@ namespace WebApplication.Models
         public int Serialnumber { get; set; }
         public string ErrorMessage { get; set; }
 
-        public ProductViewModel(DataModel.Product product)
+        public ProductViewModel(Product product)
         {
             Id = product.Id;
             Name = product.Name;

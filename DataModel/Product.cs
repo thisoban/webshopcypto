@@ -15,6 +15,5 @@ namespace DataModel
         public decimal SellPrice { get; set; }
         public decimal Buyprice { get; set; }
         public int Serialnumber { get; set; }
-
     }
 }
